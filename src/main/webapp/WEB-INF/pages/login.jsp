@@ -41,9 +41,9 @@
 					<form action="#" autocomplete="on">
 						<h1>登录</h1>
 						<p>
-							<label for="idsignup" class="youid" data-icon="u"> 长学号</label> <input
+							<label for="idsignup" class="youid" data-icon="u">长学号</label> <input
 								id="idsignup" name="idsignup" required="required" type="text"
-								placeholder="长学号" />
+								placeholder="长学号-10位" />
 						</p>
 
 						<p>
@@ -111,6 +111,8 @@
 		</div>
 		</section>
 	</div>
+	<script type="text/javascript" src="../js/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="../js/login.js"></script>
 </body>
 </html>
 </body>
