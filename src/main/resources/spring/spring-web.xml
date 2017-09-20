@@ -32,14 +32,13 @@
 	 </bean>
 	 
 	 <!-- 4.扫描web相关的bean -->
-	 <context:component-scan base-package="com.soecode.lyf.web" />
+	 <context:component-scan base-package="com.acm.web" />
 	 
 	 <!-- 登录拦截器 -->
 	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/**" /> <!-- 过滤全部请求 -->
 			<mvc:exclude-mapping path="/login" /><!-- 处理这个请求 其他过滤 -->
-			<mvc:exclude-mapping path="/verification" /><!-- 处理这个请求 其他过滤 -->
 			<bean class="com.acm.utils.UserInterceptor"></bean>
 		</mvc:interceptor>
 	</mvc:interceptors>
