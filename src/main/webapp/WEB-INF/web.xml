@@ -20,16 +20,7 @@
 		</init-param>
 	</filter>
 	
-	<!-- 静态资源 -->
-	
-	<servlet-mapping>    
-    <servlet-name>default</servlet-name>    
-     <url-pattern>*.js</url-pattern>
-     <url-pattern>*.css</url-pattern>    
-     <url-pattern>*.png</url-pattern>   
-     <url-pattern>*.jpg</url-pattern>   
-        
-    </servlet-mapping> 
+
 	<!-- 配置 Spring -->
 	<servlet>
 		<servlet-name>Spring</servlet-name>
@@ -42,11 +33,13 @@
 			<param-name>contextConfigLocation</param-name>
 			<param-value>classpath:spring/spring-web.xml</param-value>
 		</init-param>
+		<load-on-startup>1</load-on-startup>
 	</servlet>
+
 	<servlet-mapping>
 		<servlet-name>Spring</servlet-name>
 		<!-- 默认匹配所有的请求 -->
-		<url-pattern>/*</url-pattern>
+		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 	
 	

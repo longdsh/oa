@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller("test")
 public class test {
    
-	@RequestMapping(value="/login")
+	@RequestMapping(value="login")
 	public String add(HttpServletRequest request){
-		request.getSession().setAttribute("user", 1);
-		return "/login";
+		System.out.println(111);
+		return "login";
 	}
 }

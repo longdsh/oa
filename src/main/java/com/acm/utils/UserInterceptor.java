@@ -15,7 +15,9 @@ public class UserInterceptor implements HandlerInterceptor  {
 	    if(sessionObj!=null) {   
 	      return true;  
 	    }   
-	    response.sendRedirect(request.getContextPath()+"/login");  
+	    System.out.println(222);
+	    response.sendRedirect(request.getContextPath()+"/login"); 
+	   
 	    return false;  
 	  }  
 	  //拦截后处理  
