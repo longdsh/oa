@@ -5,6 +5,7 @@
 	version="3.1" metadata-complete="true">
 	
 	
+	
 	<!-- 字符集过滤器 -->
 	<filter>
 		<filter-name>encodingFilter</filter-name>
@@ -18,6 +19,17 @@
 			<param-value>true</param-value>
 		</init-param>
 	</filter>
+	
+	<!-- 静态资源 -->
+	
+	<servlet-mapping>    
+    <servlet-name>default</servlet-name>    
+     <url-pattern>*.js</url-pattern>
+     <url-pattern>*.css</url-pattern>    
+     <url-pattern>*.png</url-pattern>   
+     <url-pattern>*.jpg</url-pattern>   
+        
+    </servlet-mapping> 
 	<!-- 配置 Spring -->
 	<servlet>
 		<servlet-name>Spring</servlet-name>
@@ -34,8 +46,10 @@
 	<servlet-mapping>
 		<servlet-name>Spring</servlet-name>
 		<!-- 默认匹配所有的请求 -->
-		<url-pattern>/</url-pattern>
+		<url-pattern>/*</url-pattern>
 	</servlet-mapping>
+	
+	
 	
 	
 </web-app>
