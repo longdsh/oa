@@ -35,26 +35,19 @@
 		<property name="acquireRetryAttempts" value="2" />
 	</bean>
 
-	<!-- 3.配置SqlSessionFactory对象 -->
+	<!--================== 配置和MyBatis的整合=============== -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-		<!-- 注入数据库连接池 -->
-		<property name="dataSource" ref="dataSource" />
-		<!-- 配置MyBaties全局配置文件:mybatis-config.xml -->
-		<property name="configLocation" value="classpath:mybatis-config.xml" />
-		<!-- 扫描entity包 使用别名 -->
-		<property name="typeAliasesPackage" value="com.acm.entity" />
-		<!-- 扫描sql配置文件:mapper需要的xml文件 -->
-		<property name="mapperLocations" value="classpath:mapper/*.xml" />
+		<!-- 指定mybatis全局配置文件的位置 -->
+		<property name="configLocation" value="classpath:mybatis-config.xml"></property>
+		<property name="dataSource" ref="dataSource"></property>
+		<!-- 指定mybatis，mapper文件的位置 -->
+		<property name="mapperLocations" value="classpath:mapper/*.xml"></property>
 	</bean>
 	
-	
-
-	<!-- 4.配置扫描Dao接口包，动态实现Dao接口，注入到spring容器中 -->
+	<!-- 配置扫描器，将mybatis接口的实现加入到ioc容器中 -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<!-- 注入sqlSessionFactory -->
-		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
-		<!-- 给出需要扫描Dao接口包 -->
-		<property name="basePackage" value="com.acm.dao" />
+		<!--扫描所有dao接口的实现，加入到ioc容器中 -->
+		<property name="basePackage" value="com.acm.dao"></property>
 	</bean>
 	
 	<!-- 配置一个可以执行批量的sqlSession -->
