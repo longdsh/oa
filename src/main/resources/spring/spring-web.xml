@@ -32,6 +32,7 @@
 			<mvc:exclude-mapping path="/image/**" />
 			<mvc:exclude-mapping path="/js/**" />
 			<mvc:exclude-mapping path="/css/**" />
+			<mvc:exclude-mapping path="/fonts/**" />
 			<bean class="com.acm.utils.UserInterceptor"></bean>
 		</mvc:interceptor>
 	</mvc:interceptors>
