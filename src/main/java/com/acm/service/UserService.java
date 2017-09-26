@@ -19,7 +19,9 @@ public interface UserService {
 	
 	public void addUser(User user);
 	
-	public void delectUser(Integer id);
+	public void delectUserById(Integer id);
+	
+	public void updataUserByUser(User user);
 	
 	
 	
