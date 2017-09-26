@@ -73,7 +73,7 @@
 		</where>
 	</sql>
 	<sql id="Base_Column_List">
-		id, name, password, img, is_recruit, power,manageId
+		id, name, password, img, is_recruit, power
 	</sql>
 	<select id="selectByExample" parameterType="com.acm.entity.DepartmentExample"
 		resultMap="BaseResultMap">

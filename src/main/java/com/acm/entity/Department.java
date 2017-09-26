@@ -13,7 +13,6 @@ public class Department {
 
     private Integer power;
     
-    private Integer manageId;
 
     public Integer getId() {
         return id;
@@ -64,13 +63,7 @@ public class Department {
     }
     
 
-	public Integer getManageId() {
-		return manageId;
-	}
-
-	public void setManageId(Integer manageId) {
-		this.manageId = manageId;
-	}
+	
 
 	public Department() {
 		super();
@@ -90,7 +83,7 @@ public class Department {
 	public String toString() {
 		return "Department [id=" + id + ", name=" + name + ", password="
 				+ password + ", img=" + img + ", isRecruit=" + isRecruit
-				+ ", power=" + power + ", manageId=" + manageId + "]";
+				+ ", power=" + power + " ]";
 	}
 
 	
