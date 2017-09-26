@@ -12,6 +12,8 @@ public class Department {
     private Integer isRecruit;//是否允许加入
 
     private Integer power;
+    
+    private Integer manageId;
 
     public Integer getId() {
         return id;
@@ -60,9 +62,16 @@ public class Department {
     public void setPower(Integer power) {
         this.power = power;
     }
-
-   
     
+
+	public Integer getManageId() {
+		return manageId;
+	}
+
+	public void setManageId(Integer manageId) {
+		this.manageId = manageId;
+	}
+
 	public Department() {
 		super();
 	}
@@ -81,8 +90,10 @@ public class Department {
 	public String toString() {
 		return "Department [id=" + id + ", name=" + name + ", password="
 				+ password + ", img=" + img + ", isRecruit=" + isRecruit
-				+ ", power=" + power + "]";
+				+ ", power=" + power + ", manageId=" + manageId + "]";
 	}
+
+	
     
     
 }

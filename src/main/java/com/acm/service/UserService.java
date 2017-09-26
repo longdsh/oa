@@ -22,11 +22,5 @@ public interface UserService {
 	public void delectUserById(Integer id);
 	
 	public void updataUserByUser(User user);
-	
-	
-	
-	
-	
-	
 
 }
