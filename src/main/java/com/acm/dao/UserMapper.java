@@ -2,7 +2,10 @@ package com.acm.dao;
 
 import com.acm.entity.User;
 import com.acm.entity.UserExample;
+
 import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface UserMapper {
@@ -15,7 +18,10 @@ public interface UserMapper {
     int insert(User record);
 
     int insertSelective(User record);
-
+    
+    // <!-- 根据部门id 和用户数据模糊查询 -->
+    List<User> selectByDeptIdAndUser(Map<String,Object> map);
+    
     List<User> selectByExample(UserExample example);
 
     User selectByPrimaryKey(Integer id);

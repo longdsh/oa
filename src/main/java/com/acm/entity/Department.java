@@ -60,4 +60,29 @@ public class Department {
     public void setPower(Integer power) {
         this.power = power;
     }
+
+   
+    
+	public Department() {
+		super();
+	}
+
+	public Department(String name, String password, String img,
+			Integer isRecruit, Integer power) {
+		super();
+		this.name = name;
+		this.password = password;
+		this.img = img;
+		this.isRecruit = isRecruit;
+		this.power = power;
+	}
+
+	@Override
+	public String toString() {
+		return "Department [id=" + id + ", name=" + name + ", password="
+				+ password + ", img=" + img + ", isRecruit=" + isRecruit
+				+ ", power=" + power + "]";
+	}
+    
+    
 }

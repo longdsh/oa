@@ -2,6 +2,10 @@ package com.acm.test;
 
 import static org.junit.Assert.*;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.session.SqlSession;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,7 +16,16 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 
+
+
+
+
+
+
+
+import com.acm.dao.DepartmentMapper;
 import com.acm.dao.UserMapper;
+import com.acm.entity.Department;
 import com.acm.entity.User;
 
 
@@ -23,12 +36,11 @@ import com.acm.entity.User;
 @ContextConfiguration(locations={"classpath:spring/spring-*.xml"})
 public class DaoTest {
 	
-	/*@Autowired
-	DepartmentMapper departmentMapper;*/
+	@Autowired
+	DepartmentMapper departmentMapper;
 	@Autowired
 	UserMapper userMapper;
-	/*@Autowired
-	CustomerMapper customerMapper;*/
+	
 
 	@Autowired
 	SqlSession sqlSession;
@@ -38,17 +50,33 @@ public class DaoTest {
 	public void test() {
 		
 		//ctx = new ClassPathXmlApplicationContext("spring/spring-dao.xml");
-		System.out.println(userMapper);
-	    User user = new User();
-	    user.setName("方法");
-		int port = userMapper.insertSelective(user);
-		System.out.println(port);
-	    
-	    User user2 = userMapper.selectByPrimaryKey(2);
-	    System.out.println(user2.getName());
+		//System.out.println(userMapper);
+	   
 		
-		/*Customer customer = customerMapper.selectByPrimaryKey("0413170302");
-		System.out.println(customer.getName());*/
+		User user = new User();
+		
+	    user.setUserClass("网络"); 
+	    user.setId(7);
+	    Department department = new Department();
+	    department.setId(1);
+	    department.setName("A");
+
+	     //UserMapper 根据部门id 和用户属性 模糊查询测试
+	  /* Map<String, Object> map = new HashMap<String, Object>();
+	    map.put("user", user);
+	    map.put("dept", department);
+	    
+	    List<User> users= userMapper.selectByDeptIdAndUser(map);
+	    System.out.println(users);*/
+	    
+	   /* Map<String, Object> map = new HashMap<String, Object>();
+	    map.put("user", user);
+	    map.put("dept", department);
+	    List<Department> departments = departmentMapper.selectByUserIdAndDept(map);
+	    System.out.println(departments);*/
+	    
+	    
+	  
 		
 		
 	}

@@ -92,6 +92,29 @@
     from user
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <!-- 根据部门id 和用户数据模糊查询 -->
+  <select id="selectByDeptIdAndUser" parameterType="Map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where id in (SELECT user_id FROM user_dept WHERE dept_id = #{dept.id})
+    <if test="user.name!=null">
+      and name like"%"#{user.name}"%"
+    </if>
+    
+    <if test="user.userId!=null">
+      and use_id like"%"#{user.userId}"%"
+    </if>
+    <if test="user.userClass!=null">
+      and user_class like"%"#{user.userClass}"%"
+    </if>
+     <if test="user.phone!=null">
+      and phone like"%"#{user.phone}"%"
+    </if> 
+    order by user_id
+  
+  </select>
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from user
     where id = #{id,jdbcType=INTEGER}

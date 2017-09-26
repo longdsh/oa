@@ -1,19 +1,19 @@
 package com.acm.entity;
 
 public class User {
-    private Integer id;
+    private Integer id;//主键
 
-    private String userId;
+    private String userId;//学号
 
-    private String userClass;
+    private String userClass;//班级
 
     private String name;
 
     private String phone;
 
-    private String img;
+    private String img;//头像
 
-    private Integer power;
+    private Integer power;//权限  分 1 2 3 
 
     private String password;
 
@@ -80,4 +80,32 @@ public class User {
     public void setPassword(String password) {
         this.password = password == null ? null : password.trim();
     }
+
+    
+	public User() {
+		super();
+	}
+   
+	
+	
+	public User(String userId, String userClass, String name, String phone,
+			String img, Integer power, String password) {
+		super();
+		this.userId = userId;
+		this.userClass = userClass;
+		this.name = name;
+		this.phone = phone;
+		this.img = img;
+		this.power = power;
+		this.password = password;
+	}
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", userId=" + userId + ", userClass="
+				+ userClass + ", name=" + name + ", phone=" + phone + ", img="
+				+ img + ", power=" + power + ", password=" + password + "]";
+	}
+    
+    
 }
