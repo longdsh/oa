@@ -22,6 +22,10 @@ public interface DepartmentMapper {
     // <!-- 根据用户id查询出用户加入的部门 和 根据部门名的模糊查询 -->
     List<Department> selectByUserIdAndDept(Map<String, Object> map);
     
+    //根据部门信息模糊查询
+    List<Department> selectByDept(Department department);
+    
+    
     List<Department> selectByExample(DepartmentExample example);
 
     Department selectByPrimaryKey(Integer id);

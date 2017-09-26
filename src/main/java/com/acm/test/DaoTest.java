@@ -59,7 +59,12 @@ public class DaoTest {
 	    user.setId(7);
 	    Department department = new Department();
 	    department.setId(1);
-	    department.setName("A");
+	   // department.setName("A");
+	    
+	    //测试 模糊查询
+	    System.out.println(departmentMapper.selectByDept(department));
+	    
+	    System.out.println(userMapper.selectByUser(user));
 
 	     //UserMapper 根据部门id 和用户属性 模糊查询测试
 	  /* Map<String, Object> map = new HashMap<String, Object>();

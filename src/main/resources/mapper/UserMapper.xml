@@ -92,6 +92,33 @@
     from user
     where id = #{id,jdbcType=INTEGER}
   </select>
+  
+  <!-- 根据User信息模糊查询 -->
+  <select id="selectByUser" parameterType="com.acm.entity.User" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where 1 = 1
+     <if test="name!=null">
+      and name like"%"#{name}"%"
+    </if>
+    
+   <if test="userId!=null">
+      and use_id like"%"#{userId}"%"
+    </if>
+    <if test="userClass!=null">
+      and user_class like"%"#{userClass}"%"
+    </if>
+     <if test="phone!=null">
+      and phone like"%"#{phone}"%"
+    </if> 
+    order by user_id 
+    
+    
+  </select>
+  
+  
+  
   <!-- 根据部门id 和用户数据模糊查询 -->
   <select id="selectByDeptIdAndUser" parameterType="Map" resultMap="BaseResultMap">
     select 

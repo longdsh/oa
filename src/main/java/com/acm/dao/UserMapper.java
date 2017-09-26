@@ -21,6 +21,8 @@ public interface UserMapper {
     
     // <!-- 根据部门id 和用户数据模糊查询 -->
     List<User> selectByDeptIdAndUser(Map<String,Object> map);
+    //<!-- 根据User信息模糊查询 -->
+    List<User> selectByUser(User user);
     
     List<User> selectByExample(UserExample example);
 
