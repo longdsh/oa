@@ -57,28 +57,31 @@ public class DaoTest {
 		
 	    user.setUserClass("网络"); 
 	    user.setId(7);
+	    user.setUserId("1");
 	    Department department = new Department();
 	    department.setId(1);
 	   // department.setName("A");
 	    
 	    //测试 模糊查询
-	    System.out.println(departmentMapper.selectByDept(department));
+	   /* System.out.println(departmentMapper.selectByDept(department));
 	    
-	    System.out.println(userMapper.selectByUser(user));
+	    System.out.println(userMapper.selectByUser(user));*/
 
 	     //UserMapper 根据部门id 和用户属性 模糊查询测试
-	  /* Map<String, Object> map = new HashMap<String, Object>();
+	   Map<String, Object> map = new HashMap<String, Object>();
 	    map.put("user", user);
 	    map.put("dept", department);
 	    
 	    List<User> users= userMapper.selectByDeptIdAndUser(map);
-	    System.out.println(users);*/
+	    System.out.println(users);
 	    
 	   /* Map<String, Object> map = new HashMap<String, Object>();
 	    map.put("user", user);
 	    map.put("dept", department);
 	    List<Department> departments = departmentMapper.selectByUserIdAndDept(map);
 	    System.out.println(departments);*/
+	    
+	    //suserMapper.deleteByPrimaryKey(12);
 	    
 	    
 	  

@@ -104,7 +104,7 @@
     </if>
     
    <if test="userId!=null">
-      and use_id like"%"#{userId}"%"
+      and user_id like"%"#{userId}"%"
     </if>
     <if test="userClass!=null">
       and user_class like"%"#{userClass}"%"
@@ -130,7 +130,7 @@
     </if>
     
     <if test="user.userId!=null">
-      and use_id like"%"#{user.userId}"%"
+      and user_id like"%"#{user.userId}"%"
     </if>
     <if test="user.userClass!=null">
       and user_class like"%"#{user.userClass}"%"

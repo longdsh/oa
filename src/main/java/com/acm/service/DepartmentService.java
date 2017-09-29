@@ -11,7 +11,7 @@ public interface DepartmentService {
 	
 	public List<Department> findByDepartment(Department department);//模糊查询 差全部传入空值
 	
-	public List<Department> findByUserIdAndDepartment(Map<String, Object> map);
+	public List<Department> findByUserIdAndDepartment(Integer userId,Department department);
 	
 	public List<Department> findAllDepartment();
 	
@@ -19,6 +19,6 @@ public interface DepartmentService {
 	
 	public void delectDepartmentById(Integer id);
 	
-	public void updataDeparmentByDept(Department department);
+	public void updateDeparmentByDept(Department department);
 
 }

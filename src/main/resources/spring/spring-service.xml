@@ -11,7 +11,7 @@
 	http://www.springframework.org/schema/tx
 	http://www.springframework.org/schema/tx/spring-tx.xsd">
 	<!-- 扫描service包下所有使用注解的类型 -->
-	<context:component-scan base-package="com.acm.service" />
+	<context:component-scan base-package="com.acm.service.impl" />
 
 	<!-- 配置事务管理器 -->
 	<bean id="transactionManager"
@@ -49,9 +49,11 @@
 
 	<aop:config>
 		<aop:pointcut id="transactionPointcut"
-			expression="execution(* com.acm.service..*impl.*(..))" />
+			expression="execution(* com.acm.service..*(..))" />
 		<aop:advisor pointcut-ref="transactionPointcut"
 			advice-ref="transactionAdvice" />
 	</aop:config>
+	<!-- spring使用aop时需要设置proxy-target-class="true" 否则无法依赖注入 -->
+	<aop:aspectj-autoproxy  proxy-target-class="true"/> 
 	
 </beans>
