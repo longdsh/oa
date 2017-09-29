@@ -55,11 +55,39 @@ public class ServiceTest {
 	}
 	
 	@Test
-	public void deptTest(){
+	public void departmentServiceImplTest(){
+		
+		/**
+		 * findDepartmentById测试
+		 */
+	/*	department = departmentServiceImpl.findDepartmentById(1);
+		System.out.println(department);*/
+		
+		/**
+		 * findByDepartment测试     模糊查询
+		 */
+		/*department = new Department();
+		department.setName("音");
+	    departments = departmentServiceImpl.findByDepartment(department);
+	    System.out.println(departments);*/
+		
+		/*
+		 * findAllDepartment 
+		 */
+		/*departments = departmentServiceImpl.findAllDepartment();
+		System.out.println(departments);*/
+		
+		
+		
+		
+		/**
+		 * findByUserIdAndDepartment测试
+		 */
+		/*
 		department = new Department();
-		//department.setName("A");
+		department.setName("A");
 		departments = departmentServiceImpl.findByUserIdAndDepartment(7, department);
-		System.out.println(departments);
+		System.out.println(departments);*/
 		
 	} 
 	

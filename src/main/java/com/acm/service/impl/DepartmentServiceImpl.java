@@ -21,13 +21,13 @@ public class DepartmentServiceImpl implements DepartmentService {
 	@Override
 	public Department findDepartmentById(Integer id) {
 		// TODO Auto-generated method stub
-		return null;
+		return departmentMapper.selectByPrimaryKey(id);
 	}
 
 	@Override
 	public List<Department> findByDepartment(Department department) {
 		// TODO Auto-generated method stub
-		return null;
+		return departmentMapper.selectByDept(department);
 	}
 
 	@Override
@@ -46,24 +46,27 @@ public class DepartmentServiceImpl implements DepartmentService {
 	@Override
 	public List<Department> findAllDepartment() {
 		// TODO Auto-generated method stub
-		return null;
+		return findByDepartment(null);
 	}
 
 	@Override
 	public void addDepartment(Department department) {
 		// TODO Auto-generated method stub
+		departmentMapper.insertSelective(department);
 
 	}
 
 	@Override
 	public void delectDepartmentById(Integer id) {
 		// TODO Auto-generated method stub
+		departmentMapper.deleteByPrimaryKey(id);
 
 	}
 
 	@Override
 	public void updateDeparmentByDept(Department department) {
 		// TODO Auto-generated method stub
+		departmentMapper.updateByPrimaryKeySelective(department);
 
 	}
 
