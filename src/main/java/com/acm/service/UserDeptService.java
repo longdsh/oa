@@ -7,10 +7,6 @@ public interface UserDeptService {
 	
 	//用户加入某部门
 	public void userAddDept(UserDept userDept);
-	//用户退出某部门
-	public void userDelectDept(Integer deptId);
-	
-	//部门移除用户
-	public void DeptDelectUser(Integer userId);
-
+	//删除中间表数据
+	public void deleteContact(Integer userId, Integer deptId);
 }

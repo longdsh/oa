@@ -14,6 +14,7 @@ import com.acm.dao.UserMapper;
 import com.acm.entity.Department;
 import com.acm.entity.User;
 import com.acm.service.impl.DepartmentServiceImpl;
+import com.acm.service.impl.UserDeptServiceImpl;
 import com.acm.service.impl.UserServiceImpl;
 
 
@@ -25,6 +26,8 @@ public class ServiceTest {
 	UserServiceImpl userServiceImpl;
 	@Autowired
 	DepartmentServiceImpl departmentServiceImpl;
+	@Autowired
+	UserDeptServiceImpl userDeptServiceImpl;
 	
 	
 	
@@ -90,6 +93,14 @@ public class ServiceTest {
 		System.out.println(departments);*/
 		
 	} 
+	
+	/**
+	 * userDeptServiceImpl测试
+	 */
+	@Test
+	public void userDeptServiceImplTest() {
+		userDeptServiceImpl.deleteContact(null, 4);
+	}
 	
 
 }
