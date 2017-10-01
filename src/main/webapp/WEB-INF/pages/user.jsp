@@ -7,6 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-   user
+   user  <a href="/logout">注销</a>
+   <a href="admin/adminFrist">admin</a>
+   <a href="user/userFrist">user</a>
 </body>
 </html>

@@ -79,7 +79,7 @@
     <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
         <property name="securityManager" ref="securityManager"/>
     </bean>
-    
+     <aop:config proxy-target-class="true"></aop:config> 
      <!--  
     6. 配置 ShiroFilter. 
     6.1 id 必须和 web.xml 文件中配置的 DelegatingFilterProxy 的 <filter-name> 一致.
@@ -87,8 +87,8 @@
     -->     
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
         <property name="securityManager" ref="securityManager"/>
-       <!--  <property name="loginUrl" value="/login"/>
-         <property name="successUrl" value="/list"/> -->
+       <!--   <property name="loginUrl" value="/login"/>-->
+         <!-- <property name="successUrl" value="/list"/> -->
         <property name="unauthorizedUrl" value="/unauthorized"/> 
         
        <!--  <property name="filterChainDefinitionMap" ref="filterChainDefinitionMap"></property> -->
@@ -105,21 +105,29 @@
         <property name="filterChainDefinitions">
             <value>
                 
-              
+                /admin/** = authc,roles[admin]
+             
+                /user/** = authc,roles[user]
+               
                 /login = anon
+                /loginUri/login = anon
+                /logout = logout
+          
                 /css/**=anon
                 /js/**=anon
                 /images/**=anon
                 /fonts/**=anon
-                /user/login = anon
-                /user/register =anon
+                
+                
                 # everything else requires authentication:
                  /** = authc
             </value>
         </property>
        
     </bean>
-    <aop:config proxy-target-class="true"></aop:config> 
+   
+    
+    
     
 
 </beans>

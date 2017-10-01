@@ -7,9 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-  list
-  <a href="/user/frist">user</a>
-  <a href="/dept/frist">admin</a>
-  <a href="/logout">logout</a>
+   admin  <a href="/logout">注销</a>
 </body>
 </html>

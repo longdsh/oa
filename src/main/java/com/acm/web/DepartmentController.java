@@ -9,11 +9,5 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/dept")
 public class DepartmentController {
 
-	@RequiresPermissions( "frist" )
-	//@RequiresRoles("admin")
-	@RequestMapping("/frist")
-	public String deptFrist() {
-		System.out.println("dept");
-		return "dept";
-	}
+	
 }

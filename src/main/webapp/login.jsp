@@ -34,7 +34,7 @@
 				id="tologin"></a>
 			<div id="wrapper">
 				<div id="login" class="animate form">
-					<form action="user/login" autocomplete="on" method="post">
+					<form action="loginUri/login" autocomplete="on" method="post">
 						<h1>登录</h1>
 						<p>
 							<label for="idsignup" class="youid" data-icon="u">长学号</label> <input
@@ -63,7 +63,7 @@
 				</div>
 
 				<div id="register" class="animate form">
-					<form action="user/register" autocomplete="on" method="post"
+					<form action="loginUri/register" autocomplete="on" method="post"
 						onsubmit="return confirm()">
 						<h1>注册</h1>
 
