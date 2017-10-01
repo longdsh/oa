@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-   admin  <a href="/logout">注销</a>
+   admin  <a href="${pageContext.request.contextPath}/logout">注销</a>
 </body>
 </html>

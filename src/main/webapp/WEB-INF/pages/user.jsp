@@ -7,8 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-   user  <a href="/logout">注销</a>
-   <a href="admin/adminFrist">admin</a>
-   <a href="user/userFrist">user</a>
+   user  <a href="${pageContext.request.contextPath}/logout">注销</a>
+   <a href="${pageContext.request.contextPath}/admin/adminFrist">admin</a>
+   <a href="${pageContext.request.contextPath}/user/userFrist">user</a>
 </body>
 </html>

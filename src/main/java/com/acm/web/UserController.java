@@ -14,6 +14,7 @@ import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.acm.entity.User;
@@ -22,7 +23,7 @@ import com.acm.entity.User;
 @Controller
 @RequestMapping("/user")
 public class UserController {
-    @RequestMapping("userFrist")
+    @RequestMapping(value="/userFrist",method = {RequestMethod.POST, RequestMethod.GET})
 	public String userFrist() {
 		return "user";
 	}

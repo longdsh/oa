@@ -2,6 +2,7 @@ package com.acm.web;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
 * @author 计算机网络软件应用1501 路素飞
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/admin")
 public class AdminController {
 	
-	@RequestMapping("adminFrist")
+	@RequestMapping(value="/adminFrist",method = {RequestMethod.POST, RequestMethod.GET})
 	public String adminFrist() {
 		return "admin";
 	}
