@@ -12,19 +12,15 @@
 <meta name="keywords"
 	content="html5, css3, form, switch, animation, :target, pseudo-class" />
 <meta name="author" content="Codrops" />
-<link rel="shortcut icon" href="${pageContext.request.contextPath}/favicon.ico">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css" />
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/animate-custom.css" />
+<link rel="shortcut icon"
+	href="${pageContext.request.contextPath}/favicon.ico">
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/css/style.css" />
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/css/animate-custom.css" />
+
 <title>登录</title>
 </head>
-<body>
-	<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6 lt8"> <![endif]-->
-	<!--[if IE 7 ]>    <html lang="en" class="no-js ie7 lt8"> <![endif]-->
-	<!--[if IE 8 ]>    <html lang="en" class="no-js ie8 lt8"> <![endif]-->
-	<!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
-	<!--[if (gt IE 9)|!(IE)]><!-->
-<html lang="en" class="no-js">
-<!--<![endif]-->
 <body>
 	<div class="container">
 
@@ -38,23 +34,23 @@
 				id="tologin"></a>
 			<div id="wrapper">
 				<div id="login" class="animate form">
-					<form action="#" autocomplete="on">
+					<form action="user/login" autocomplete="on" method="post">
 						<h1>登录</h1>
 						<p>
 							<label for="idsignup" class="youid" data-icon="u">长学号</label> <input
-								id="idsignup" name="idsignup" required="required" type="text"
+								class="idsignup" id="idsignup" name="userId" required="required" type="text"
 								placeholder="长学号" /><span class="user_hint"></span>
 						</p>
 
 						<p>
 							<label for="usernamesignup" class="uname" data-icon="u">姓名</label>
-							<input id="usernamesignup" name="usernamesignup"
-								required="required" type="text" placeholder="姓名" />
+							<input id="usernamesignup" name="name" required="required"
+								type="text" placeholder="姓名" />
 						</p>
 						<p>
 							<label for="password" class="youpasswd" data-icon="p"> 密码</label>
-							<input id="password" name="密码" required="required" type="密码"
-								placeholder="密码" />
+							<input id="password" name="password" required="required"
+								type="password" placeholder="密码" />
 						</p>
 
 						<p class="login button">
@@ -67,30 +63,31 @@
 				</div>
 
 				<div id="register" class="animate form">
-					<form action="#" autocomplete="on">
+					<form action="user/register" autocomplete="on" method="post"
+						onsubmit="return confirm()">
 						<h1>注册</h1>
 
 						<p>
 							<label for="classsignup" class="youclass" data-icon="u">
-								班级</label> <input id="classsignup" name="classsignup"
-								required="required" type="text" placeholder="班级" />
+								班级</label> <input id="classsignup" name="userClass" required="required"
+								type="text" placeholder="班级" />
 						</p>
 						<p>
 							<label for="idsignup" class="youid" data-icon="u"> 长学号</label> <input
-								id="idsignup" name="idsignup" required="required" type="text"
+								class="idsignup" id="idsignup" name="userId" required="required" type="text"
 								placeholder="长学号" /><span class="user_hint"></span>
 						</p>
 
 						<p>
 							<label for="usernamesignup" class="uname" data-icon="u">姓名</label>
-							<input id="usernamesignup" name="usernamesignup"
-								required="required" type="text" placeholder="姓名" />
+							<input id="usernamesignup" name="name" required="required"
+								type="text" placeholder="姓名" />
 						</p>
 
 						<p>
 							<label for="passwordsignup" class="youpasswd" data-icon="p">密码</label>
-							<input id="passwordsignup" name="passwordsignup"
-								required="required" type="password" placeholder="密码" />
+							<input id="passwordsignup" name="password" required="required"
+								type="password" placeholder="密码" />
 						</p>
 						<p>
 							<label for="passwordsignup_confirm" class="youpasswd"
@@ -111,9 +108,9 @@
 		</div>
 		</section>
 	</div>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.2.1.min.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/js/login.js"></script>
-</body>
-</html>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/js/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/js/login.js"></script>
 </body>
 </html>

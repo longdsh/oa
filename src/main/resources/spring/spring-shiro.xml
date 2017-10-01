@@ -88,8 +88,8 @@
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
         <property name="securityManager" ref="securityManager"/>
        <!--  <property name="loginUrl" value="/login"/>
-         <property name="successUrl" value="/list"/> 
-        <property name="unauthorizedUrl" value="/unauthorized"/> -->
+         <property name="successUrl" value="/list"/> -->
+        <property name="unauthorizedUrl" value="/unauthorized"/> 
         
        <!--  <property name="filterChainDefinitionMap" ref="filterChainDefinitionMap"></property> -->
         
@@ -111,14 +111,15 @@
                 /js/**=anon
                 /images/**=anon
                 /fonts/**=anon
-                
+                /user/login = anon
+                /user/register =anon
                 # everything else requires authentication:
-                /** = authc
+                 /** = authc
             </value>
         </property>
        
     </bean>
-    
+    <aop:config proxy-target-class="true"></aop:config> 
     
 
 </beans>

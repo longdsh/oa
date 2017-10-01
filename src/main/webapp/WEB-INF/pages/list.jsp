@@ -8,5 +8,8 @@
 </head>
 <body>
   list
+  <a href="/user/frist">user</a>
+  <a href="/dept/frist">admin</a>
+  <a href="/logout">logout</a>
 </body>
 </html>
