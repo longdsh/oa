@@ -14,7 +14,6 @@
 	// password_confirm
 	$("#passwordsignup_confirm").change(function(){
 	  if (($("#passwordsignup").val())==($("#passwordsignup_confirm").val())){
-	  	alert("密码相同")
 	    varconfirm_Boolean = true;
 	  }else {
 	  	alert("密码不同");

@@ -66,18 +66,20 @@ public class LoginController {
 
 	// @ResponseBody
 	@RequestMapping(value = "/register")
-	public String register(User user, HttpServletRequest request) {
+	public String register(User user) {
 		System.out.println(user);
         
 		Session session = getSession();
 		// 判断是否存在id
-		String massage = null;
+		String error = null;
 
 		if (userServiceImpl.countByUserId(user.getUserId()) != 0) {
-			massage = "学号已存在";
-			request.setAttribute("massage", massage);
+			error = "学号已存在";
+			session.setAttribute("error", error);
 			return "../../login";
 		}
+		//md5加密前先取出原密码
+		String password = user.getPassword();
 		// 加密
 		user = Md5Util.md5User(user);
 		// 数据库中存入取出 再添加角色
@@ -86,7 +88,7 @@ public class LoginController {
 		session.setAttribute("userOrDept", user);
 		session.setAttribute("role", "user");
 		//request.setAttribute("userOrDept", user);
-		return role(user.getUserId(), user.getName(), user.getPassword());
+		return role(user.getUserId(), user.getName(), password);
 
 	}
 
