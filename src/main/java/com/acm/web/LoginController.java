@@ -75,6 +75,7 @@ public class LoginController {
 
 		if (userServiceImpl.countByUserId(user.getUserId()) != 0) {
 			error = "学号已存在";
+			session.setAttribute("user", user);
 			session.setAttribute("error", error);
 			return "../../login";
 		}
