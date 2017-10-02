@@ -8,5 +8,9 @@
 </head>
 <body>
    dept
+   <a href="${pageContext.request.contextPath}/logout">注销</a>
+   <a href="${pageContext.request.contextPath}/admin/adminFrist">admin</a>
+   <a href="${pageContext.request.contextPath}/dept/deptFrist">dept</a>
+   <a href="${pageContext.request.contextPath}/user/userFrist">user</a>
 </body>
 </html>

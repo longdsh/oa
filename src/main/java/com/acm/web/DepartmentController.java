@@ -9,5 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/dept")
 public class DepartmentController {
 
+	@RequestMapping("deptFrist")
+	 public String deptFrist() {
+		 return "dept";
+	 }
 	
 }

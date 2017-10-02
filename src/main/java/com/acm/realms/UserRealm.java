@@ -1,8 +1,11 @@
 package com.acm.realms;
 
+import static org.hamcrest.CoreMatchers.nullValue;
+
 import java.util.HashSet;
 import java.util.Set;
 
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -10,8 +13,13 @@ import org.apache.shiro.authc.SimpleAuthenticationInfo;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
+import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.apache.shiro.subject.Subject;
 import org.apache.shiro.util.ByteSource;
+
+import com.acm.entity.Department;
+import com.acm.entity.User;
 
 /**
  * @author 计算机网络软件应用1501 路素飞 QQ 2512977541
@@ -32,6 +40,10 @@ public class UserRealm extends AuthorizingRealm {
 			roles.add("admin");
 			roles.add("user");
 			roles.add("dept");
+		}else if("dept".equals(principal)) {
+			roles.add("dept");
+		}else {
+			roles.add("user");
 		}
 
 		// 3. 创建 SimpleAuthorizationInfo, 并设置其 reles 属性.
@@ -45,24 +57,50 @@ public class UserRealm extends AuthorizingRealm {
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
 		// TODO Auto-generated method stub
 		String username = (String) token.getPrincipal();
+		Object principal = null;
 		Object credentials = null;
-		if ("admin".equals(username)) {
-			credentials = "038bdaf98f2037b31f1e75b5b4c9b26e";
-		} else if ("user".equals(username)) {
-			credentials = "098d2c478e9c11555ce2823231e02ec1";
+		ByteSource credentialsSalt = null;
+/********************************************************************************************/
+/**
+ * 权限控制
+ */
+		Session session = getSession();
+		String role = session.getAttribute("role").toString();
+		System.out.println(role);
+		if(role.equals("user")) {
+			User user = (User) session.getAttribute("userOrDept");
+			credentials = user.getPassword();
+			principal = "user";
+			credentialsSalt = ByteSource.Util.bytes(user.getUserId());
+		}else {
+			Department department = (Department) session.getAttribute("userOrDept");
+			System.out.println(department);
+			credentials = department.getPassword();
+			System.out.println(credentials);
+			if(department.getPower()==3) {
+				principal = "admin";
+			}else {
+				principal = "dept";
+			}
+			System.out.println(principal);
+			credentialsSalt = ByteSource.Util.bytes(department.getName());
+			System.out.println(credentialsSalt);
 		}
-
 		// 1). principal: 认证的实体信息. 可以是 username, 也可以是数据表对应的用户的实体类对象.
-		Object principal = username;
-
 		String realmName = getName();
-
+/****************************************************************************************/
 		// 4). 盐值.
-		ByteSource credentialsSalt = ByteSource.Util.bytes(username);
-
+		  
 		SimpleAuthenticationInfo info = null; // new SimpleAuthenticationInfo(principal, credentials, realmName);
 		info = new SimpleAuthenticationInfo(principal, credentials, credentialsSalt, realmName);
+		System.out.println(info);
 		return info;
+	}
+	
+	public Session getSession() {
+		Subject subject = SecurityUtils.getSubject();
+        Session session = subject.getSession();
+        return session;
 	}
 
 }

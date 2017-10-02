@@ -9,6 +9,7 @@ import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.crypto.hash.SimpleHash;
+import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,7 +53,7 @@ public class LoginController {
 	public String login(@RequestParam("userId") String userId, @RequestParam("name") String username,
 			@RequestParam("password") String password, HttpServletRequest request) throws Exception {
 		
-		return deptOrUser(userId, username, password, request);
+		return deptOrUser(userId, username, password);
 
 	}
 	
@@ -67,7 +68,8 @@ public class LoginController {
 	@RequestMapping(value = "/register")
 	public String register(User user, HttpServletRequest request) {
 		System.out.println(user);
-
+        
+		Session session = getSession();
 		// 判断是否存在id
 		String massage = null;
 
@@ -81,7 +83,9 @@ public class LoginController {
 		// 数据库中存入取出 再添加角色
 		userServiceImpl.addUser(user);
 		user = userServiceImpl.findUserByUserId(user.getUserId());
-		request.setAttribute("user", user);
+		session.setAttribute("userOrDept", user);
+		session.setAttribute("role", "user");
+		//request.setAttribute("userOrDept", user);
 		return role(user.getUserId(), user.getName(), user.getPassword());
 
 	}
@@ -96,25 +100,29 @@ public class LoginController {
 	 * @return
 	 */
 	//登录角色判断
-	public String deptOrUser(String userId, String username, String password, HttpServletRequest request) {
-		String massage = null;
+	public String deptOrUser(String userId, String username, String password) {
+		String error = null;
+		Session session = getSession();
 		if (userId.equals("manage")) {
 			if (departmentServiceImpl.countDeptByName(username) == 0) {
-				massage = "用户不存在";
-				request.setAttribute("massage", massage);
+				error = "用户不存在";
+				session.setAttribute("error", error);
 				return "../../login";
 			}
 			Department department = departmentServiceImpl.findDepartmentByName(username);
 			// 如果部门登录 以部门名为盐值
+			session.setAttribute("userOrDept", department);
+			session.setAttribute("role", "dept");
 			return role(username, userId, password);
 		} else {
 			if (userServiceImpl.countByUserId(userId) == 0) {
-				massage = "用户不存在";
-				request.setAttribute("massage", massage);
+				error = "用户不存在";
+				session.setAttribute("error", error);
 				return "../../login";
 			}
 			User user = userServiceImpl.findUserByUserId(userId);
-			request.setAttribute("user", user);
+			session.setAttribute("userOrDept", user);
+			session.setAttribute("role", "user");
 			return role(userId, username, password);
 		}
 	}
@@ -129,7 +137,7 @@ public class LoginController {
 		// Shiro实现登录
 		UsernamePasswordToken token = new UsernamePasswordToken(userIdOrDeptName, password);
 		Subject subject = SecurityUtils.getSubject();
-
+		Session session = getSession();
 		String error = null;
 		// 如果获取不到用户名就是登录失败，但登录失败的话，会直接抛出异常
 		try {
@@ -146,7 +154,7 @@ public class LoginController {
 			error = "其他错误：";
 		}
 		if (error != null) {// 出错了，返回登录页面
-			// request.setAttribute("error", error);
+			session.setAttribute("error", error);
 			return "../../login";
 		}
 		if (subject.hasRole("admin")) {
@@ -158,6 +166,12 @@ public class LoginController {
 		} else {
 			return "../../login";
 		}
+	}
+	
+	public Session getSession() {
+		Subject subject = SecurityUtils.getSubject();
+        Session session = subject.getSession();
+        return session;
 	}
 
 }

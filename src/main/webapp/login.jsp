@@ -36,7 +36,7 @@
 				<div id="login" class="animate form">
 					<form action="${pageContext.request.contextPath}/loginUri/login" autocomplete="on" method="post">
 						<h1>登录</h1>
-						<h2>${massage }</h2>
+						<h2>${error }</h2>
 						<p>
 							<label for="idsignup" class="youid" data-icon="u">长学号</label> <input
 								class="idsignup" id="idsignup" name="userId" required="required" type="text"
