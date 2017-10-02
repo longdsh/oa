@@ -27,9 +27,11 @@ public class UserRealm extends AuthorizingRealm {
 
 		// 2. 利用登录的用户的信息来用户当前用户的角色或权限(可能需要查询数据库)
 		Set<String> roles = new HashSet<>();
-		roles.add("user");
+		
 		if ("admin".equals(principal)) {
 			roles.add("admin");
+			roles.add("user");
+			roles.add("dept");
 		}
 
 		// 3. 创建 SimpleAuthorizationInfo, 并设置其 reles 属性.
