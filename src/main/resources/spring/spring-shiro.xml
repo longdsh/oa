@@ -110,7 +110,7 @@
             <value>
                 
                 /admin/** = authc,roles[admin]
-             
+                /dept/** = authc,roles[dept]
                 /user/** = authc,roles[user]
                
                 /login = anon

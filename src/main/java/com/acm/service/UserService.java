@@ -9,13 +9,15 @@ import com.acm.entity.User;
 public interface UserService {
 	
 	public User findUserById(Integer id);//按主键
-	;
 	
 	public long countByUserId(String userId);
+	
+	public User findUserByUserId(String userId);
 	
 	public List<User> findUserByUser(User user);
 	
 	public List<User> findUserByDeptIdAndUser(Integer deptId,User user);//map中放入 department 和 user
+	
 	
 	public List<User> findAllUser();
 	

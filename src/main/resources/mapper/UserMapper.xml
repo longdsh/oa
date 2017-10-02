@@ -116,8 +116,7 @@
     
     
   </select>
-  
-  
+
   
   <!-- 根据部门id 和用户数据模糊查询 -->
   <select id="selectByDeptIdAndUser" parameterType="Map" resultMap="BaseResultMap">

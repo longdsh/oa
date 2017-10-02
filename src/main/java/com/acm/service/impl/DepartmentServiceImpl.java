@@ -34,6 +34,20 @@ public class DepartmentServiceImpl implements DepartmentService {
 		criteria.andNameEqualTo(deptName);
 		return departmentMapper.countByExample(example);
 	}
+	
+	@Override
+	public Department findDepartmentByName(String deptName) {
+		// TODO Auto-generated method stub
+		DepartmentExample example = new DepartmentExample();
+		Criteria criteria = example.createCriteria();
+		criteria.andNameEqualTo(deptName);
+		List<Department> departments = departmentMapper.selectByExample(example);
+		if(departments.size()==0) {
+			return null;
+		}
+		return departments.get(0);
+	}
+
 
 	@Override
 	public List<Department> findByDepartment(Department department) {
@@ -81,5 +95,6 @@ public class DepartmentServiceImpl implements DepartmentService {
 
 	}
 
+	
 	
 }

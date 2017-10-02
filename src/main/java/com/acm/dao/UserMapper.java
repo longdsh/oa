@@ -23,7 +23,7 @@ public interface UserMapper {
     List<User> selectByDeptIdAndUser(Map<String,Object> map);
     //<!-- 根据User信息模糊查询 -->
     List<User> selectByUser(User user);
-    
+      
     List<User> selectByExample(UserExample example);
 
     User selectByPrimaryKey(Integer id);

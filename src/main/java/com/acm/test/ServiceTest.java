@@ -64,8 +64,8 @@ public class ServiceTest {
 		 * findDepartmentByName
 		 */
 		
-		long count = departmentServiceImpl.countDeptByName("AC");
-		System.out.println(count);
+		/*long count = departmentServiceImpl.countDeptByName("AC");
+		System.out.println(count);*/
 		
 		/**
 		 * findDepartmentById测试
@@ -99,6 +99,11 @@ public class ServiceTest {
 		departments = departmentServiceImpl.findByUserIdAndDepartment(7, department);
 		System.out.println(departments);*/
 		
+		/**
+		 * 
+		 */
+		department = departmentServiceImpl.findDepartmentByName("AC");
+		System.out.println(department);
 	} 
 	
 	/**
@@ -110,9 +115,17 @@ public class ServiceTest {
 	}
 	@Test
 	public void userServiceImplTest() {
+		/**
+		 * countByUserId
+		 */
+		/*long count = userServiceImpl.countByUserId("0413150313");
+		System.out.println(count);*/
 		
-		long count = userServiceImpl.countByUserId("0413150313");
-		System.out.println(count);
+		/**
+		 * findUserByUserId
+		 */
+		user = userServiceImpl.findUserByUserId("413150313");
+		System.out.println(user);
 	}
 	
 

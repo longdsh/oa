@@ -26,6 +26,8 @@ public class UserServiceImpl implements UserService {
 		return userMapper.selectByPrimaryKey(id);
 	}
 	
+	
+	
 	@Override
 	public long countByUserId(String userId) {
 		// TODO Auto-generated method stub
@@ -34,6 +36,19 @@ public class UserServiceImpl implements UserService {
 		criteria.andUserIdEqualTo(userId);
 		return userMapper.countByExample(example);
 
+	}
+	
+	@Override
+	public User findUserByUserId(String userId) {
+		// TODO Auto-generated method stub
+		UserExample example = new UserExample();
+		Criteria criteria = example.createCriteria();
+		criteria.andUserIdEqualTo(userId);
+		List<User> users = userMapper.selectByExample(example);
+		if(users.size()==0) {
+			return null;
+		}
+		return users.get(0);
 	}
 
 	@Override
@@ -78,6 +93,8 @@ public class UserServiceImpl implements UserService {
 		userMapper.updateByPrimaryKeySelective(user);
 
 	}
+
+	
 
 	
 
