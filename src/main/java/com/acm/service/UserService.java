@@ -9,6 +9,9 @@ import com.acm.entity.User;
 public interface UserService {
 	
 	public User findUserById(Integer id);//按主键
+	;
+	
+	public long countByUserId(String userId);
 	
 	public List<User> findUserByUser(User user);
 	

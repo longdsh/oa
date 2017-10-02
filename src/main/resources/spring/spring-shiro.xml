@@ -71,20 +71,24 @@
     <!--  4. 配置 LifecycleBeanPostProcessor. 可以自定的来调用配置在 Spring IOC 容器中 shiro bean 的生命周期方法. -->       
     <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
     
-      <!--  
+    
+      <!-- 
+      
+      此配置导致IOC无法使用  先删除 具体原因不清楚 
     5. 启用 IOC 容器中使用 shiro 的注解. 但必须在配置了 LifecycleBeanPostProcessor 之后才可以使用. 
     -->     
-    <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"
+  <!--   <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"
           depends-on="lifecycleBeanPostProcessor"/>
     <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
         <property name="securityManager" ref="securityManager"/>
-    </bean>
+    </bean> -->
      <aop:config proxy-target-class="true"></aop:config> 
      <!--  
+     
     6. 配置 ShiroFilter. 
     6.1 id 必须和 web.xml 文件中配置的 DelegatingFilterProxy 的 <filter-name> 一致.
                       若不一致, 则会抛出: NoSuchBeanDefinitionException. 因为 Shiro 会来 IOC 容器中查找和 <filter-name> 名字对应的 filter bean.
-    -->     
+    -->  
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
         <property name="securityManager" ref="securityManager"/>
        <!--   <property name="loginUrl" value="/login"/>-->
@@ -110,7 +114,7 @@
                 /user/** = authc,roles[user]
                
                 /login = anon
-                /loginUri/login = anon
+                /loginUri/** = anon
                 /logout = logout
           
                 /css/**=anon
@@ -129,8 +133,4 @@
         <property name="redirectUrl" value="/login" />
     </bean> -->
    
-    
-    
-    
-
 </beans>

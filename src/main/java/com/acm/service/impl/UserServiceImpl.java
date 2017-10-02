@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 import com.acm.dao.UserMapper;
 import com.acm.entity.Department;
 import com.acm.entity.User;
+import com.acm.entity.UserExample;
+import com.acm.entity.UserExample.Criteria;
 import com.acm.service.UserService;
 
 @Service
@@ -23,7 +25,16 @@ public class UserServiceImpl implements UserService {
 		// TODO Auto-generated method stub
 		return userMapper.selectByPrimaryKey(id);
 	}
+	
+	@Override
+	public long countByUserId(String userId) {
+		// TODO Auto-generated method stub
+		UserExample example = new UserExample();
+		Criteria criteria = example.createCriteria();
+		criteria.andUserIdEqualTo(userId);
+		return userMapper.countByExample(example);
 
+	}
 
 	@Override
 	public List<User> findUserByUser(User user) {
@@ -67,5 +78,10 @@ public class UserServiceImpl implements UserService {
 		userMapper.updateByPrimaryKeySelective(user);
 
 	}
+
+	
+
+
+	
 
 }

@@ -61,6 +61,13 @@ public class ServiceTest {
 	public void departmentServiceImplTest(){
 		
 		/**
+		 * findDepartmentByName
+		 */
+		
+		long count = departmentServiceImpl.countDeptByName("AC");
+		System.out.println(count);
+		
+		/**
 		 * findDepartmentById测试
 		 */
 	/*	department = departmentServiceImpl.findDepartmentById(1);
@@ -100,6 +107,12 @@ public class ServiceTest {
 	@Test
 	public void userDeptServiceImplTest() {
 		userDeptServiceImpl.deleteContact(null, 4);
+	}
+	@Test
+	public void userServiceImplTest() {
+		
+		long count = userServiceImpl.countByUserId("0413150313");
+		System.out.println(count);
 	}
 	
 

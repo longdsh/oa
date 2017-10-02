@@ -9,6 +9,8 @@ public interface DepartmentService {
 	
 	public Department findDepartmentById(Integer id);
 	
+	public long countDeptByName(String deptName);
+	
 	public List<Department> findByDepartment(Department department);//模糊查询 差全部传入空值
 	
 	public List<Department> findByUserIdAndDepartment(Integer userId,Department department);

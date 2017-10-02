@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 
 import com.acm.dao.DepartmentMapper;
 import com.acm.entity.Department;
+import com.acm.entity.DepartmentExample;
+import com.acm.entity.DepartmentExample.Criteria;
 import com.acm.entity.User;
 import com.acm.service.DepartmentService;
 
@@ -22,6 +24,15 @@ public class DepartmentServiceImpl implements DepartmentService {
 	public Department findDepartmentById(Integer id) {
 		// TODO Auto-generated method stub
 		return departmentMapper.selectByPrimaryKey(id);
+	}
+    
+	@Override
+	public long countDeptByName(String deptName) {
+		// TODO Auto-generated method stub
+		DepartmentExample example = new DepartmentExample();
+		Criteria criteria = example.createCriteria();
+		criteria.andNameEqualTo(deptName);
+		return departmentMapper.countByExample(example);
 	}
 
 	@Override
@@ -70,4 +81,5 @@ public class DepartmentServiceImpl implements DepartmentService {
 
 	}
 
+	
 }

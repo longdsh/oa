@@ -6,11 +6,20 @@ import org.apache.shiro.authc.ExcessiveAttemptsException;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.subject.Subject;
+import org.apache.shiro.util.ByteSource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.acm.entity.User;
+import com.acm.service.impl.UserServiceImpl;
+import com.acm.utils.Md5Util;
 
 /**
 * @author 计算机网络软件应用1501 路素飞
@@ -22,7 +31,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("/loginUri")
 public class LoginController {
 	
-	
+	@Autowired
+	UserServiceImpl userServiceImpl;
 	
 	 @RequestMapping(value = "/login", method = {RequestMethod.POST})
 	    public String login(
@@ -62,6 +72,27 @@ public class LoginController {
 	        	return "failure"; 
 	        }
 	    }
+	 
+	// @ResponseBody
+	 @RequestMapping(value="/register")
+	 public String register(User user) {
+		 System.out.println(user);
+		 String massage = null;
+		 
+		 //判断是否存在id
+		 User user2 = new User();
+		 user.setUserId(user.getUserId());
+	/*	if(userServiceImpl.findUserByUser(user2).get(0)!=null) {
+			//massage = "学号已存在";
+		}*/
+		  //加密
+		 user = Md5Util.md5User(user);
+		 userServiceImpl.addUser(user);
+		 return "../login";
+		 
+	 }
+	 
+	  
 	 
 	
 }
