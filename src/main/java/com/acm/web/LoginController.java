@@ -163,7 +163,7 @@ public class LoginController {
 		if (subject.hasRole("admin")) {
 			return "redirect:/admin/adminFrist";
 		} else if (subject.hasRole("dept")) {
-			return "redirect:/dept/deotFrist";
+			return "redirect:/dept/deptFrist";
 		} else if (subject.hasRole("user")) {
 			return "redirect:/user/userFrist";
 		} else {

@@ -69,6 +69,7 @@ public class UserRealm extends AuthorizingRealm {
 		System.out.println(role);
 		if(role.equals("user")) {
 			User user = (User) session.getAttribute("userOrDept");
+			System.out.println(user);
 			credentials = user.getPassword();
 			principal = "user";
 			credentialsSalt = ByteSource.Util.bytes(user.getUserId());
@@ -76,15 +77,12 @@ public class UserRealm extends AuthorizingRealm {
 			Department department = (Department) session.getAttribute("userOrDept");
 			System.out.println(department);
 			credentials = department.getPassword();
-			System.out.println(credentials);
 			if(department.getPower()==3) {
 				principal = "admin";
 			}else {
 				principal = "dept";
 			}
-			System.out.println(principal);
 			credentialsSalt = ByteSource.Util.bytes(department.getName());
-			System.out.println(credentialsSalt);
 		}
 		// 1). principal: 认证的实体信息. 可以是 username, 也可以是数据表对应的用户的实体类对象.
 		String realmName = getName();
