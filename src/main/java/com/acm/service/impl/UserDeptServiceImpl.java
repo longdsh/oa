@@ -33,4 +33,15 @@ public class UserDeptServiceImpl implements UserDeptService {
 		userDeptMapper.deleteByExample(example);
 	}
 	
+	@Override
+	public long count(Integer userKey, Integer deptKey) {
+		// TODO Auto-generated method stub
+		UserDeptExample example = new UserDeptExample();
+		Criteria criteria = example.createCriteria();
+		criteria.andUserIdEqualTo(userKey)
+		.andDeptIdEqualTo(deptKey);
+
+		return userDeptMapper.countByExample(example);
+	}
+	
 }

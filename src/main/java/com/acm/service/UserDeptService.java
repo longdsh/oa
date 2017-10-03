@@ -9,4 +9,6 @@ public interface UserDeptService {
 	public void userAddDept(UserDept userDept);
 	//删除中间表数据
 	public void deleteContact(Integer userId, Integer deptId);
+	
+	public long count(Integer userKey,Integer deptKey);
 }

@@ -111,7 +111,15 @@ public class ServiceTest {
 	 */
 	@Test
 	public void userDeptServiceImplTest() {
-		userDeptServiceImpl.deleteContact(null, 4);
+		/**
+		 * deleteContact
+		 */
+		//userDeptServiceImpl.deleteContact(null, 4);
+		/**
+		 * userDeptServiceImpl
+		 */
+		long count = userDeptServiceImpl.count(2, 3);
+		System.out.println(count);
 	}
 	@Test
 	public void userServiceImplTest() {
