@@ -1,5 +1,8 @@
 package com.acm.web;
 
+import static org.hamcrest.CoreMatchers.nullValue;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.shiro.SecurityUtils;
@@ -14,6 +17,7 @@ import org.apache.shiro.subject.Subject;
 import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -38,7 +42,7 @@ public class LoginController {
 	UserServiceImpl userServiceImpl;
 	@Autowired
 	DepartmentServiceImpl departmentServiceImpl;
-
+	
 	
 	/**
 	 * 
@@ -51,7 +55,7 @@ public class LoginController {
 	 */
 	@RequestMapping(value = "/login", method = { RequestMethod.POST })
 	public String login(@RequestParam("userId") String userId, @RequestParam("name") String username,
-			@RequestParam("password") String password, HttpServletRequest request) throws Exception {
+			@RequestParam("password") String password) throws Exception {
 		
 		return deptOrUser(userId, username, password);
 
@@ -161,10 +165,13 @@ public class LoginController {
 			return "../../login";
 		}
 		if (subject.hasRole("admin")) {
+
 			return "redirect:/admin/adminFrist";
 		} else if (subject.hasRole("dept")) {
+
 			return "redirect:/dept/deptFrist";
 		} else if (subject.hasRole("user")) {
+
 			return "redirect:/user/userFrist";
 		} else {
 			return "../../login";
