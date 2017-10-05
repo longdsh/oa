@@ -69,20 +69,25 @@
 						<h1>注册</h1>
 
 						<p>
-							<label for="classsignup" class="youclass" data-icon="u">
+							<label for="classsignup" class="youclass">
 								班级</label> <input id="classsignup" name="userClass" required="required"
 								type="text" placeholder="班级" value="${user.userClass}"/>
 						</p>
 						<p>
-							<label for="idsignup" class="youid" data-icon="u"> 长学号</label> <input
+							<label for="idsignup" class="youid"> 长学号</label> <input
 								class="idsignup" id="idsignup" name="userId" required="required" type="text"
 								placeholder="长学号" value="${user.userId }"/><span class="user_hint"></span>
 						</p>
 
 						<p>
-							<label for="usernamesignup" class="uname" data-icon="u">姓名</label>
+							<label for="usernamesignup" class="uname">姓名</label>
 							<input id="usernamesignup" name="name" required="required"
 								type="text" placeholder="姓名" value="${user.name }"/>
+						</p>
+						<p>
+							<label for="userphonesignup" class="uphone">手机号</label>
+							<input id="userphonesignup" name="phone" required="required"
+								type="text" placeholder="手机号" value="${user.phone }"/>
 						</p>
 
 						<p>
