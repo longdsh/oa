@@ -1,1 +1,4 @@
-# oa  练手玩具项目
+
+# SpringMVC,Spring,Mybatis CRUD 
+权限控制Shiro 
+数据库 MySql
