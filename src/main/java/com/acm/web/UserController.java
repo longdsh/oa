@@ -42,8 +42,8 @@ public class UserController {
 	
 	PageInfo<Department> pageDept = null;
 	
-	int allDeptPageNum = 1;
-	int joinDeptPageNum = 1;
+	int allDeptPageNum = 1; //保存查询出所有部门信息的当前页码
+	int joinDeptPageNum = 1;//保存已加入部门的当前页码
 	
 	/**
 	 * 初始化信息
@@ -63,14 +63,16 @@ public class UserController {
     
     
     /**
-     * 
+     * 分页查出部门信息 及模糊查询
      * @param department
      * @return
-     * 分页查出部门信息  
+     *   
      */
     @ResponseBody
     @RequestMapping(value="getDept")
-    public Message getDept(Department department) {
+    public Message getDept(Department department,Model model) {
+    	allDeptPageNum = 1;
+    	model.addAttribute("allDeptPageNum", allDeptPageNum);
     	PageHelper.startPage(allDeptPageNum, 8);
 
     	List<Department> departments = departmentServiceImpl.findByDepartment(department);
@@ -78,6 +80,22 @@ public class UserController {
     	pageDept = new PageInfo<Department>(departments);
 
     	return Message.success().add("pageDept", pageDept);
+    	
+    }
+    
+   /**
+    * 翻页
+    * @param allDeptPageNum
+    * @param model
+    * @return
+    */
+    @ResponseBody
+    @RequestMapping(value="/toAllDeptPageNum")
+    public Message toAllDeptPageNum(Integer allDeptPageNum,Model model) {
+    	//设置当前页是第几页  
+    	model.addAttribute("allDeptPageNum", allDeptPageNum);
+    	PageHelper.startPage(allDeptPageNum, 8);
+		return Message.success().add("pageDept", pageDept);
     	
     }
 	 
