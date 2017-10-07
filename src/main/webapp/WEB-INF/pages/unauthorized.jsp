@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-   无权限
+  <h1 align="center"> 无权限</h1>
 </body>
 </html>

@@ -7,8 +7,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.acm.entity.Department;
+import com.acm.entity.Message;
 import com.acm.entity.User;
 import com.acm.service.impl.DepartmentServiceImpl;
 import com.acm.service.impl.UserServiceImpl;
@@ -33,5 +35,13 @@ public class AdminController {
 		List<Department> departments = departmentServiceImpl.findAllDepartment();
 		model.addAttribute("departments", departments);
 		return "admin";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/getAllDept")
+	public Message getAllDept() {
+		
+	    List<Department> departments = departmentServiceImpl.findAllDepartment();
+	    return Message.success().add("departments", departments);
 	}
 }
