@@ -56,8 +56,7 @@ public class UserController {
 	
 	User user = null;
 	
-	int allDeptPageNum = 1; //保存查询出所有部门信息的当前页码
-	int joinDeptPageNum = 1;//保存已加入部门的当前页码
+	
 	
 	/**
 	 * 跳转 及初始化信息
@@ -71,6 +70,9 @@ public class UserController {
     	joinDepts = departmentServiceImpl.findByUserIdAndDepartment(user.getId(), null);
     	model.addAttribute("user", user);
     	//保存页码
+    	
+    	int allDeptPageNum = 1; //保存查询出所有部门信息的当前页码
+    	int joinDeptPageNum = 1;//保存已加入部门的当前页码
     	model.addAttribute("allDeptPageNum", allDeptPageNum);
     	model.addAttribute("joinDeptPageNum", joinDeptPageNum);
 		return "user";
@@ -97,7 +99,11 @@ public class UserController {
     
 
  /*********************************************************************************************/
-    
+    /**
+     * 得到加入部门分页数据
+     * @param joinDeptPageNum
+     * @return
+     */
 	private PageInfo<Department> getJoinDept(Integer joinDeptPageNum) {
 		// TODO Auto-generated method stub
 		PageHelper.startPage(joinDeptPageNum, 8);
@@ -105,6 +111,11 @@ public class UserController {
 		return pageInfo;
 	}
 
+	/**
+	 * 得到所有部门分页数据
+	 * @param allDeptPageNum
+	 * @return
+	 */
 	private PageInfo<Department> getAllDept(Integer allDeptPageNum) {
 		// TODO Auto-generated method stub
     	PageHelper.startPage(allDeptPageNum, 8);
