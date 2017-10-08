@@ -29,6 +29,7 @@ import com.acm.entity.Department;
 import com.acm.entity.Message;
 import com.acm.entity.User;
 import com.acm.service.impl.DepartmentServiceImpl;
+import com.acm.service.impl.UserServiceImpl;
 import com.acm.utils.SessionUtil;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -41,6 +42,8 @@ public class UserController {
 	
 	@Autowired
 	DepartmentServiceImpl departmentServiceImpl;
+	@Autowired
+	UserServiceImpl userServiceImpl;
 	
 	List<Department> allDepts = null;
 	
@@ -73,52 +76,40 @@ public class UserController {
 		return "user";
 	}
     
-    @ResponseBody
-    @RequestMapping(value="/f5")
-    public Message f5() {
-    	
-    	
-		return null;
-    	
-    }
-    
     /**
-     * 分页查出部门信息 及模糊查询
-     * @param department
+     * 第一次跳转Ajax刷新页面
+     * @param allDeptPageNum
+     * @param joinDeptPageNum
      * @return
-     *   
      */
     @ResponseBody
-    @RequestMapping(value="getDept")
-    public Message getAllDept(Department department,Model model) {
+    @RequestMapping(value="/f5")
+    public Message f5(Integer allDeptPageNum,Integer joinDeptPageNum) {
+    	allPageDept = getAllDept(allDeptPageNum);
+    	joinPageDept = getJoinDept(joinDeptPageNum);
     	
-    	allDeptPageNum = 1;
-    	model.addAttribute("allDeptPageNum", allDeptPageNum);
-    	PageHelper.startPage(allDeptPageNum, 8);
-
-    	allDepts = departmentServiceImpl.findByDepartment(department);
-
-    	allPageDept = new PageInfo<Department>(allDepts);
-
-    	return Message.success().add("allPageDept", allPageDept);
+		return Message.success()
+				.add("user", this.user)
+				.add("allPageDept", allPageDept)
+				.add("joinPageDept", joinPageDept);
     	
     }
     
+
+ /*********************************************************************************************/
     
-   /**
-    * 所有部门  翻页
-    * @param allDeptPageNum
-    * @param model
-    * @return
-    */
-    @ResponseBody
-    @RequestMapping(value="/toAllDeptPageNum")
-    public Message toAllDeptPageNum(Integer allDeptPageNum,Model model) {
-    	//设置当前页是第几页  
-    	model.addAttribute("allDeptPageNum", allDeptPageNum);
+	private PageInfo<Department> getJoinDept(Integer joinDeptPageNum) {
+		// TODO Auto-generated method stub
+		PageHelper.startPage(joinDeptPageNum, 8);
+    	PageInfo<Department> pageInfo = new PageInfo<>(joinDepts);
+		return pageInfo;
+	}
+
+	private PageInfo<Department> getAllDept(Integer allDeptPageNum) {
+		// TODO Auto-generated method stub
     	PageHelper.startPage(allDeptPageNum, 8);
-		return Message.success().add("allPageDept", allPageDept);
-    	
-    }
+    	PageInfo<Department> pageInfo = new PageInfo<>(allDepts);
+		return pageInfo;
+	}
 	 
 }

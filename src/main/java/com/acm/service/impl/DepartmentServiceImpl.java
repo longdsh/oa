@@ -58,6 +58,9 @@ public class DepartmentServiceImpl implements DepartmentService {
 	@Override
 	public List<Department> findByUserIdAndDepartment(Integer userId,Department department) {
 		// TODO Auto-generated method stub
+		if(department==null) {
+			department = new Department();
+		}
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		
