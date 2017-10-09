@@ -89,46 +89,6 @@
 	<script type="text/javascript"
 		src="${APP_PATH }/js/jquery-3.2.1.min.js"></script>
 	<script type="text/javascript" src="${APP_PATH }/js/bootstrap.min.js"></script>
-	
-	 <script type="text/javascript">
-	//刷新页面
-	$(function(){
-	    f5_all_info(1);
-	    f5_join_info(1);
-	});
-    //刷新所有部门信息页面
-	function f5_all_info(allDeptPageNum) {
-		
-		$.ajax({
-			type:"post",
-			url:"${APP_PATH}/user/f5All",
-			data:"allDeptPageNum="+allDeptPageNum,
-			success:function(result){
-				f5_user_info(result);
-				f5_all_dept(result);
-				f5_all_nav(result);
-			}
-		});
-			
-	}
-    //刷新加入部门页面
-	function f5_join_info(joinDeptPageNum){
-		
-	}
-	//刷新用户信息
-	function f5_user_info(result){
-		$("#user_id").append(result.extend.user.userId);
-		$("#user_class").append(result.extend.user.userClass);
-		$("#user_name").append(result.extend.user.name);
-	}
-	//刷新所有部门信息
-	function f5_all_dept(result){
-		
-	}
-	//属性所有部门页码
-	function f5_all_nav(result){
-		
-	}
-	</script> 
+	<script type="text/javascript" src="${APP_PATH }/js/user.js"></script>
 </body>
 </html>
