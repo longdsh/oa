@@ -1,4 +1,3 @@
-
 $(function() {
 	f5_all_info(1);
 	f5_join_info(1);
@@ -27,7 +26,8 @@ function f5_join_info(joinDeptPageNum) {
 }
 // 刷新用户信息
 function f5_user_info(result) {
-	// $("#user_id").
+	// $("#phone").attr("value",result.extend.user.id);
+	$("#user_key").attr("value",result.extend.user.id)
 	$("#user_id").empty();
 	$("#user_class").empty();
 	$("#user_name").empty();
@@ -71,7 +71,7 @@ function f5_all_nav(result) {
 	var frist_page_li = $("<li></li>").append($("<span></span>").append("首页"));
 	var pre_page_li = $("<li></li>").append(
 			$("<span></span>").append("&laquo;"));
-	//添加事件
+	// 添加事件
 	if (result.extend.allPageDept.hasPreviousPage) {
 		frist_page_li.click(function() {
 			f5_all_info(1);
@@ -79,33 +79,32 @@ function f5_all_nav(result) {
 		pre_page_li.click(function() {
 			f5_all_info(result.extend.allPageDept.pageNum - 1);
 		})
-	}else{
-		//如果当前页为第一页不能点
+	} else {
+		// 如果当前页为第一页不能点
 		frist_page_li.addClass("disabled");
 		pre_page_li.addClass("disabled");
 	}
-	//加入到ui
+	// 加入到ui
 	frist_page_li.appendTo("#all_dept_nav");
 	pre_page_li.appendTo("#all_dept_nav");
 	var page_num = result.extend.allPageDept.navigatepageNums;
-	//遍历中间页
-	$.each(page_num,function(index,item){
+	// 遍历中间页
+	$.each(page_num, function(index, item) {
 		var page_li = $("<li></li>").append($("<span></span>").append(item));
-		page_li.click(function(){
+		page_li.click(function() {
 			f5_all_info(item);
 		})
-		//为当前页高亮显示
-		if(item==result.extend.allPageDept.pageNum){
+		// 为当前页高亮显示
+		if (item == result.extend.allPageDept.pageNum) {
 			page_li.addClass("active");
 		}
 		page_li.appendTo("#all_dept_nav");
 	})
-	
-	
+
 	var last_page_li = $("<li></li>").append($("<span></span>").append("末页"));
 	var next_page_li = $("<li></li>").append(
 			$("<span></span>").append("&raquo;"));
-	//添加事件
+	// 添加事件
 	if (result.extend.allPageDept.hasNextPage) {
 		last_page_li.click(function() {
 			f5_all_info(result.extend.allPageDept.pages);
@@ -113,31 +112,50 @@ function f5_all_nav(result) {
 		next_page_li.click(function() {
 			f5_all_info(result.extend.allPageDept.pageNum + 1);
 		})
-	}else{
-		//如果当前页为第一页不能点
+	} else {
+		// 如果当前页为第一页不能点
 		last_page_li.addClass("disabled");
 		next_page_li.addClass("disabled");
 	}
-	
-	//加入到ui
+
+	// 加入到ui
 	next_page_li.appendTo("#all_dept_nav");
 	last_page_li.appendTo("#all_dept_nav");
+
+	var pages = result.extend.allPageDept.pages;
+	var size = result.extend.allPageDept.size;
+	
+	$("#all_dept_page_info").empty();
+	$("#all_dept_page_info").append(
+			$("<span></span>").append("共").append(
+					$("<kbd></kbd>").append(pages))
+					.append("页   "))
+			.append(
+			$("<span></span>").append(" ").append(
+					$("<kbd></kbd>").append(size))
+					.append("条数据"));
 
 }
 
 function add_to_dept(result) {
-	alert("已添加")
+	alert("已添加");
 }
 
 $("#find_all_dept").keyup(function() {
 	f5_all_info(1);
-})
+});
 
-$("#up_user_info").click(function(){
+$("#up_user_info").click(function() {
+    //alert("修改信息")
+   $("#updata_user_info_modal").modal();
+});
+
+$("#updata_user_info_modal_submit").click(function(){
 	
-})
+	$("#updata_user_info_modal").modal('hide');
+});
 
-//得到绝对路径
+// 得到绝对路径
 function getRootPath() {
 	// 获取当前网址，如： http://localhost:9527/zdss-web/login/login.do
 	var curWwwPath = window.document.location.href;

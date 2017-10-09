@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="${APP_PATH}/css/bootstrap.css" />
 </head>
 <body>
+	<input type="hidden" id="use_key">
 	<!--
         	作者：offline
         	时间：2017-10-09
@@ -20,6 +21,7 @@
 		<div class="col-md-6">
 			<table class="table table-striped" id="user_info">
 				<tbody>
+
 					<th id="user_id"></th>
 					<th id=user_class></th>
 					<th id="user_name"></th>
@@ -34,7 +36,62 @@
 			</table>
 		</div>
 	</div>
-
+	<!-- 修改用户信息模态框 -->
+	<div class="modal fade" id="updata_user_info_modal" tabindex="-1"
+		role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">修改用户信息</h4>
+				</div>
+				<div class="modal-body">
+					<form>
+						<div class="form-group">
+							<label>长学号</label> 
+							<input
+								type="text" class="form-control" placeholder="长学号" name="userId">
+						</div>
+						<div class="form-group">
+							<label>班级</label> 
+							<input
+								type="text" class="form-control" placeholder="班级" name="userClass">
+						</div>
+						<div class="form-group">
+							<label>姓名</label> 
+							<input
+								type="text" class="form-control" placeholder="姓名" name="name">
+						</div>
+						<div class="form-group">
+							<label>手机</label> 
+							<input
+								type="text" class="form-control" placeholder="手机" id="phone">
+						</div>
+						<div class="form-group">
+							<label>密码</label> 
+							<input
+								type="password" class="form-control" placeholder="密码" id="password">
+						</div>
+						
+					</form>
+					<div class="form-group">
+							<label>重复密码</label> 
+							<input
+								type="password" class="form-control" placeholder="重复密码" id="password1">
+						</div>
+					
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+					<button type="button" class="btn btn-primary"
+						id="updata_user_info_modal_submit">保存</button>
+				</div>
+			</div>
+		</div>
+	</div>
 	<!--
         	作者：offline
         	时间：2017-10-09
@@ -43,24 +100,35 @@
 	<div class="row">
 		<div class="col-md-6">
 			<h3>所有部门</h3>
-			<div class="col-md-6">
-				<input type="text" class="form-control" id="find_all_dept"
-					placeholder="部门名称">
-			</div>
-			<table class="table table-striped table table-hover">
-
-				<th>部门名</th>
-				<th>报名</th>
-				<tbody id="show_all_dept">
-
-
+			<div class="row">
+				<div class="col-md-4">
+					<input type="text" class="form-control" id="find_all_dept"
+						placeholder="部门名称">
+				</div>
+				<div class="col-md-4" id="all_dept_page_info">
 					<!-- ajax填充 -->
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<table class="table table-striped table table-hover">
 
-				</tbody>
+						<th>部门名</th>
+						<th>报名</th>
+						<tbody id="show_all_dept">
 
-			</table>
+
+							<!-- ajax填充 -->
+
+						</tbody>
+
+					</table>
+				</div>
+			</div>
+
 			<!-- 页码 -->
 			<div class="row">
+
 				<div class="col-md-12">
 					<nav aria-label="Page navigation">
 					<ul class="pagination" id="all_dept_nav">
@@ -97,8 +165,8 @@
 			</div>
 		</div>
 	</div>
-    
-    
+
+
 
 
 
