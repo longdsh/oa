@@ -23,7 +23,6 @@ public class Md5Util {
 		user.setPassword(result.toString());
 
 		user.setPower(1);
-		user.setImg(null);
 		return user;
 		
 	}

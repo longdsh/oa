@@ -66,15 +66,7 @@ public class UserController {
     @RequestMapping(value="/userFrist")
 	public String userFrist(Model model) {
     	user = (User) SessionUtil.getSession().getAttribute("userOrDept");
-    	allDepts = departmentServiceImpl.findAllDepartment();
-    	joinDepts = departmentServiceImpl.findByUserIdAndDepartment(user.getId(), null);
     	model.addAttribute("user", user);
-    	//保存页码
-    	
-    	int allDeptPageNum = 1; //保存查询出所有部门信息的当前页码
-    	int joinDeptPageNum = 1;//保存已加入部门的当前页码
-    	model.addAttribute("allDeptPageNum", allDeptPageNum);
-    	model.addAttribute("joinDeptPageNum", joinDeptPageNum);
 		return "user";
 	}
     
@@ -85,17 +77,29 @@ public class UserController {
      * @return
      */
     @ResponseBody
-    @RequestMapping(value="/f5")
-    public Message f5(Integer allDeptPageNum,Integer joinDeptPageNum) {
+    @RequestMapping(value="/f5All")
+    public Message f5All(@RequestParam("allDeptPageNum")Integer allDeptPageNum,
+    		             Model model) {
+	
+    	
     	allPageDept = getAllDept(allDeptPageNum);
-    	joinPageDept = getJoinDept(joinDeptPageNum);
+
     	
 		return Message.success()
 				.add("user", this.user)
-				.add("allPageDept", allPageDept)
-				.add("joinPageDept", joinPageDept);
+				.add("allPageDept", allPageDept);
+				//.add("joinPageDept", joinPageDept);
     	
     }
+    
+    public Message f5Join(@RequestParam("joinDeptPageNum")Integer joinDeptPageNum,
+    		Model model) {
+    	joinPageDept = getJoinDept(joinDeptPageNum);
+		return Message.success()
+				.add("user", this.user)
+				.add("joinPageDept", joinPageDept);
+		
+	}
     
 
  /*********************************************************************************************/
@@ -107,6 +111,8 @@ public class UserController {
 	private PageInfo<Department> getJoinDept(Integer joinDeptPageNum) {
 		// TODO Auto-generated method stub
 		PageHelper.startPage(joinDeptPageNum, 8);
+		//分页查询
+		joinDepts = departmentServiceImpl.findByUserIdAndDepartment(user.getId(), null);
     	PageInfo<Department> pageInfo = new PageInfo<>(joinDepts);
 		return pageInfo;
 	}
@@ -119,6 +125,7 @@ public class UserController {
 	private PageInfo<Department> getAllDept(Integer allDeptPageNum) {
 		// TODO Auto-generated method stub
     	PageHelper.startPage(allDeptPageNum, 8);
+    	allDepts = departmentServiceImpl.findAllDepartment();
     	PageInfo<Department> pageInfo = new PageInfo<>(allDepts);
 		return pageInfo;
 	}
