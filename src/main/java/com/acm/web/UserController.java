@@ -1,6 +1,5 @@
 package com.acm.web;
 
-
 import static org.hamcrest.CoreMatchers.nullValue;
 
 import java.util.List;
@@ -35,99 +34,99 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.mchange.v2.log.PackageNames;
 
-
 @Controller
 @RequestMapping("/user")
 public class UserController {
-	
+
 	@Autowired
 	DepartmentServiceImpl departmentServiceImpl;
 	@Autowired
 	UserServiceImpl userServiceImpl;
-	
+
 	List<Department> allDepts = null;
-	
+
 	List<Department> joinDepts = null;
-	
-	
+
 	PageInfo<Department> allPageDept = null;
-	
+
 	PageInfo<Department> joinPageDept = null;
-	
+
 	User user = null;
-	
-	
-	
+
 	/**
 	 * 跳转 及初始化信息
+	 * 
 	 * @param model
 	 * @return
 	 */
-    @RequestMapping(value="/userFrist")
+	@RequestMapping(value = "/userFrist")
 	public String userFrist(Model model) {
-    	user = (User) SessionUtil.getSession().getAttribute("userOrDept");
-    	model.addAttribute("user", user);
+		user = (User) SessionUtil.getSession().getAttribute("userOrDept");
+		model.addAttribute("user", user);
 		return "user";
 	}
-    
-    /**
-     * 第一次跳转Ajax刷新页面
-     * @param allDeptPageNum
-     * @param joinDeptPageNum
-     * @return
-     */
-    @ResponseBody
-    @RequestMapping(value="/f5All")
-    public Message f5All(@RequestParam("allDeptPageNum")Integer allDeptPageNum,
-    		             Model model) {
-	
-    	
-    	allPageDept = getAllDept(allDeptPageNum);
 
-    	
-		return Message.success()
-				.add("user", this.user)
+	/**
+	 * 第一次跳转Ajax刷新页面
+	 * 
+	 * @param allDeptPageNum
+	 * @param joinDeptPageNum
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/f5All")
+	/* @RequestParam("allDeptPageNum") */
+	public Message f5All(Integer allDeptPageNum, String deptName, Model model) {
+     //  System.out.println("allDeptPageNum:"+allDeptPageNum);
+      // System.out.println("deptName:"+deptName);
+		allPageDept = getAllDept(allDeptPageNum,deptName);
+
+		return Message.success().add("user", this.user)
 				.add("allPageDept", allPageDept);
-				//.add("joinPageDept", joinPageDept);
-    	
-    }
-    
-    public Message f5Join(@RequestParam("joinDeptPageNum")Integer joinDeptPageNum,
-    		Model model) {
-    	joinPageDept = getJoinDept(joinDeptPageNum);
-		return Message.success()
-				.add("user", this.user)
-				.add("joinPageDept", joinPageDept);
-		
-	}
-    
+		// .add("joinPageDept", joinPageDept);
 
- /*********************************************************************************************/
-    /**
-     * 得到加入部门分页数据
-     * @param joinDeptPageNum
-     * @return
-     */
+	}
+
+	public Message f5Join(
+			@RequestParam("joinDeptPageNum") Integer joinDeptPageNum,
+			Model model) {
+		joinPageDept = getJoinDept(joinDeptPageNum);
+		return Message.success().add("user", this.user)
+				.add("joinPageDept", joinPageDept);
+
+	}
+
+	/*********************************************************************************************/
+	/**
+	 * 得到加入部门分页数据
+	 * 
+	 * @param joinDeptPageNum
+	 * @return
+	 */
 	private PageInfo<Department> getJoinDept(Integer joinDeptPageNum) {
 		// TODO Auto-generated method stub
 		PageHelper.startPage(joinDeptPageNum, 8);
-		//分页查询
-		joinDepts = departmentServiceImpl.findByUserIdAndDepartment(user.getId(), null);
-    	PageInfo<Department> pageInfo = new PageInfo<>(joinDepts);
+		// 分页查询
+		joinDepts = departmentServiceImpl.findByUserIdAndDepartment(
+				user.getId(), null);
+		PageInfo<Department> pageInfo = new PageInfo<>(joinDepts);
 		return pageInfo;
 	}
 
 	/**
 	 * 得到所有部门分页数据
+	 * 
 	 * @param allDeptPageNum
 	 * @return
 	 */
-	private PageInfo<Department> getAllDept(Integer allDeptPageNum) {
+	private PageInfo<Department> getAllDept(Integer allDeptPageNum,String deptName) {
 		// TODO Auto-generated method stub
-    	PageHelper.startPage(allDeptPageNum, 8);
-    	allDepts = departmentServiceImpl.findAllDepartment();
-    	PageInfo<Department> pageInfo = new PageInfo<>(allDepts);
+		PageHelper.startPage(allDeptPageNum, 8);
+		Department department = new Department();
+		department.setName(deptName);
+		allDepts = departmentServiceImpl.findByDepartment(department);
+		PageInfo<Department> pageInfo = new PageInfo<>(allDepts);
 		return pageInfo;
 	}
-	 
+
 }
