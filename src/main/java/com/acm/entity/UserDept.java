@@ -20,4 +20,18 @@ public class UserDept {
     public void setDeptId(Integer deptId) {
         this.deptId = deptId;
     }
+
+	public UserDept(Integer userId, Integer deptId) {
+		super();
+		this.userId = userId;
+		this.deptId = deptId;
+	}
+
+	public UserDept() {
+		super();
+	}
+	
+	
+    
+    
 }

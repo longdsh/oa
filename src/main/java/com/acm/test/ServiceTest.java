@@ -118,8 +118,8 @@ public class ServiceTest {
 		/**
 		 * userDeptServiceImpl
 		 */
-		long count = userDeptServiceImpl.count(2, 3);
-		System.out.println(count);
+		userDeptServiceImpl.count(2, 3);
+		
 	}
 	@Test
 	public void userServiceImplTest() {

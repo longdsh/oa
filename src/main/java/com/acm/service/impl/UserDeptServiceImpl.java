@@ -15,7 +15,7 @@ public class UserDeptServiceImpl implements UserDeptService {
 	@Autowired
 	UserDeptMapper userDeptMapper;
 	@Override
-	public void userAddDept(UserDept userDept) {
+	public void addUserAndDept(UserDept userDept) {
 		// TODO Auto-generated method stub
 		userDeptMapper.insert(userDept);
 
@@ -34,14 +34,14 @@ public class UserDeptServiceImpl implements UserDeptService {
 	}
 	
 	@Override
-	public long count(Integer userKey, Integer deptKey) {
+	public boolean count(Integer userKey, Integer deptKey) {
 		// TODO Auto-generated method stub
 		UserDeptExample example = new UserDeptExample();
 		Criteria criteria = example.createCriteria();
 		criteria.andUserIdEqualTo(userKey)
 		.andDeptIdEqualTo(deptKey);
 
-		return userDeptMapper.countByExample(example);
+		return userDeptMapper.countByExample(example)==1?true:false;
 	}
 	
 }

@@ -14,6 +14,7 @@ import com.acm.entity.User;
 public class Md5Util {
 	
 	public static User md5User(User user) {
+		System.out.println("md5Util:"+user);
 		String hashAlgorithmName = "MD5";
 		Object credentials = user.getPassword();
 		//盐值为学号

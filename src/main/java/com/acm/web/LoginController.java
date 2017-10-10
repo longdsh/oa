@@ -81,7 +81,7 @@ public class LoginController {
 		// 判断是否存在id
 		String error = null;
 
-		if (userServiceImpl.countByUserId(user.getUserId()) != 0) {
+		if (userServiceImpl.countByUserId(user.getUserId())) {
 			error = "学号已存在";
 			session.setAttribute("user", user);
 			session.setAttribute("error", error);
@@ -126,7 +126,7 @@ public class LoginController {
 			session.setAttribute("role", "dept");
 			return role(username, userId, password);
 		} else {
-			if (userServiceImpl.countByUserId(userId) == 0) {
+			if (!userServiceImpl.countByUserId(userId)) {
 				error = "用户不存在";
 				session.setAttribute("error", error);
 				return "../../login";

@@ -10,7 +10,7 @@ public interface UserService {
 	
 	public User findUserById(Integer id);//按主键
 	
-	public long countByUserId(String userId);
+	public boolean countByUserId(String userId);
 	
 	public User findUserByUserId(String userId);
 	

@@ -29,12 +29,12 @@ public class UserServiceImpl implements UserService {
 	
 	
 	@Override
-	public long countByUserId(String userId) {
+	public boolean countByUserId(String userId) {
 		// TODO Auto-generated method stub
 		UserExample example = new UserExample();
 		Criteria criteria = example.createCriteria();
 		criteria.andUserIdEqualTo(userId);
-		return userMapper.countByExample(example);
+		return userMapper.countByExample(example)>0?true:false;
 
 	}
 	

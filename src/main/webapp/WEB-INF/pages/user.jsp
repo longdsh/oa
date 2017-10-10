@@ -49,9 +49,8 @@
 					<h4 class="modal-title" id="myModalLabel">修改用户信息</h4>
 				</div>
 				<div class="modal-body">
-					<form>
-					
-					    <input type="hidden" id="use_key" name="id">
+					<form id="user_info">
+					    <input type="hidden" id="user_key" name="id">
 						<div class="form-group">
 							<label>长学号</label> 
 							<input
@@ -70,12 +69,12 @@
 						<div class="form-group">
 							<label>手机</label> 
 							<input
-								type="text" class="form-control" placeholder="手机" id="phone">
+								type="text" class="form-control" placeholder="手机" id="phone" name="phone">
 						</div>
 						<div class="form-group">
 							<label>密码</label> 
 							<input
-								type="password" class="form-control" placeholder="密码" id="password">
+								type="password" class="form-control" placeholder="密码" id="password" name="password">
 						</div>
 						
 					</form>
@@ -83,7 +82,7 @@
 							<label>重复密码</label> 
 							<input
 								type="password" class="form-control" placeholder="重复密码" id="password1">
-						</div>
+					</div>
 					
 				</div>
 				<div class="modal-footer">
@@ -151,6 +150,10 @@
 				<input type="text" class="form-control" id="find_join_dept"
 					placeholder="部门名称">
 			</div>
+			<!-- 页面具体信息 页数  数据条数-->
+				<div class="col-md-4" id="join_dept_page_info">
+					<!-- ajax填充 -->
+				</div>
 			<table class="table table-striped table table-hover">
 				<tbody id="show_join_dept">
 					<th>部门名</th>
@@ -170,10 +173,6 @@
 			</div>
 		</div>
 	</div>
-
-
-
-
 
 	<script type="text/javascript" src="${APP_PATH}/js/jquery-3.2.1.min.js"></script>
 	<script type="text/javascript" src="${APP_PATH}/js/bootstrap.min.js"></script>

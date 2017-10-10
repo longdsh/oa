@@ -27,8 +27,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.acm.entity.Department;
 import com.acm.entity.Message;
 import com.acm.entity.User;
+import com.acm.entity.UserDept;
 import com.acm.service.impl.DepartmentServiceImpl;
+import com.acm.service.impl.UserDeptServiceImpl;
 import com.acm.service.impl.UserServiceImpl;
+import com.acm.utils.Md5Util;
 import com.acm.utils.SessionUtil;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -42,6 +45,8 @@ public class UserController {
 	DepartmentServiceImpl departmentServiceImpl;
 	@Autowired
 	UserServiceImpl userServiceImpl;
+	@Autowired
+	UserDeptServiceImpl userDeptServiceImpl;
 
 	List<Department> allDepts = null;
 
@@ -86,16 +91,69 @@ public class UserController {
 		// .add("joinPageDept", joinPageDept);
 
 	}
-
-	public Message f5Join(
-			@RequestParam("joinDeptPageNum") Integer joinDeptPageNum,
+	@ResponseBody
+	@RequestMapping(value="/f5Join")
+	public Message f5Join(Integer joinDeptPageNum,String deptName,
 			Model model) {
-		joinPageDept = getJoinDept(joinDeptPageNum);
+		joinPageDept = getJoinDept(joinDeptPageNum,deptName);
 		return Message.success().add("user", this.user)
 				.add("joinPageDept", joinPageDept);
 
 	}
-
+    
+	
+	@ResponseBody
+	@RequestMapping(value="/userAddDept")
+	public Message userAddDept(Integer deptKey) {
+		if(userDeptServiceImpl.count(user.getId(), deptKey)){
+			return Message.fail().setMsg("已加入此部门");
+		}
+		Department department = departmentServiceImpl.findDepartmentById(deptKey);
+		if(department.getIsRecruit()==0){
+			return Message.fail().setMsg("此部门已招满");
+		}
+		//传入2个主键    类中变量名取名不当0.0
+		UserDept userDept = new UserDept(user.getId(), deptKey);
+		userDeptServiceImpl.addUserAndDept(userDept);
+		return Message.success();
+		
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/userRemoveDept")
+	public Message userRemoveDept(Integer deptKey){
+		
+		try {
+			userDeptServiceImpl.deleteContact(user.getId(), deptKey);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return Message.fail();
+		}
+		return Message.success();
+	}
+	/**
+	 * 修改用户信息
+	 */
+	@ResponseBody
+	@RequestMapping(value="/upUserInfo")
+	public Message upUserInfo(User user){
+		System.out.println(user);
+		if(userServiceImpl.countByUserId(user.getUserId())){
+			return Message.fail().setMsg("此学号已存在");
+		}
+		Md5Util.md5User(user);
+		try {
+			userServiceImpl.updateUserByUser(user);
+		} catch (Exception e) {
+			// TODO: handle exception
+			return Message.fail().setMsg("未知错误");
+		}
+		
+		this.user = user;
+		return Message.success().add("user", user);
+	}
+	
 	/*********************************************************************************************/
 	/**
 	 * 得到加入部门分页数据
@@ -103,12 +161,15 @@ public class UserController {
 	 * @param joinDeptPageNum
 	 * @return
 	 */
-	private PageInfo<Department> getJoinDept(Integer joinDeptPageNum) {
+	
+	private PageInfo<Department> getJoinDept(Integer joinDeptPageNum,String deptName) {
 		// TODO Auto-generated method stub
-		PageHelper.startPage(joinDeptPageNum, 8);
+		Department department = new Department();
+		department.setName(deptName);
+		PageHelper.startPage(joinDeptPageNum, 2);
 		// 分页查询
 		joinDepts = departmentServiceImpl.findByUserIdAndDepartment(
-				user.getId(), null);
+				user.getId(), department);
 		PageInfo<Department> pageInfo = new PageInfo<>(joinDepts);
 		return pageInfo;
 	}
@@ -121,7 +182,7 @@ public class UserController {
 	 */
 	private PageInfo<Department> getAllDept(Integer allDeptPageNum,String deptName) {
 		// TODO Auto-generated method stub
-		PageHelper.startPage(allDeptPageNum, 3);
+		PageHelper.startPage(allDeptPageNum, 2);
 		Department department = new Department();
 		department.setName(deptName);
 		allDepts = departmentServiceImpl.findByDepartment(department);

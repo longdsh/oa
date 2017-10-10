@@ -46,8 +46,9 @@ public class Message {
 		return msg;
 	}
 
-	public void setMsg(String msg) {
+	public Message setMsg(String msg) {
 		this.msg = msg;
+		return this;
 	}
 
 	public Map<String, Object> getExtend() {
