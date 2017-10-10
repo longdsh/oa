@@ -121,7 +121,7 @@ public class UserController {
 	 */
 	private PageInfo<Department> getAllDept(Integer allDeptPageNum,String deptName) {
 		// TODO Auto-generated method stub
-		PageHelper.startPage(allDeptPageNum, 8);
+		PageHelper.startPage(allDeptPageNum, 3);
 		Department department = new Department();
 		department.setName(deptName);
 		allDepts = departmentServiceImpl.findByDepartment(department);

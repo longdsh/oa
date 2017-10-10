@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="${APP_PATH}/css/bootstrap.css" />
 </head>
 <body>
-	<input type="hidden" id="use_key">
+	
 	<!--
         	作者：offline
         	时间：2017-10-09
@@ -50,20 +50,22 @@
 				</div>
 				<div class="modal-body">
 					<form>
+					
+					    <input type="hidden" id="use_key" name="id">
 						<div class="form-group">
 							<label>长学号</label> 
 							<input
-								type="text" class="form-control" placeholder="长学号" name="userId">
+								type="text" class="form-control" placeholder="长学号" name="userId" id=userId>
 						</div>
 						<div class="form-group">
 							<label>班级</label> 
 							<input
-								type="text" class="form-control" placeholder="班级" name="userClass">
+								type="text" class="form-control" placeholder="班级" name="userClass" id="userClass">
 						</div>
 						<div class="form-group">
 							<label>姓名</label> 
 							<input
-								type="text" class="form-control" placeholder="姓名" name="name">
+								type="text" class="form-control" placeholder="姓名" name="name" id="name">
 						</div>
 						<div class="form-group">
 							<label>手机</label> 
