@@ -103,14 +103,17 @@
 		<div class="col-md-6">
 			<h3>所有部门</h3>
 			<div class="row">
+			    <!-- 模糊查询 -->
 				<div class="col-md-4">
 					<input type="text" class="form-control" id="find_all_dept"
 						placeholder="部门名称">
 				</div>
+				<!-- 页面具体信息 页数  数据条数-->
 				<div class="col-md-4" id="all_dept_page_info">
 					<!-- ajax填充 -->
 				</div>
 			</div>
+			<!-- 部门信息 -->
 			<div class="row">
 				<div class="col-md-12">
 					<table class="table table-striped table table-hover">
@@ -174,6 +177,7 @@
 
 	<script type="text/javascript" src="${APP_PATH}/js/jquery-3.2.1.min.js"></script>
 	<script type="text/javascript" src="${APP_PATH}/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="${APP_PATH}/js/nav.js"></script>
 	<script type="text/javascript" src="${APP_PATH}/js/user.js"></script>
 </body>
 </html>

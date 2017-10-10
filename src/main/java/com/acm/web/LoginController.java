@@ -43,6 +43,10 @@ public class LoginController {
 	@Autowired
 	DepartmentServiceImpl departmentServiceImpl;
 	
+	@RequestMapping("/toLogin")
+	public String toLogin(){
+		return "../../login";
+	}
 	
 	/**
 	 * 
