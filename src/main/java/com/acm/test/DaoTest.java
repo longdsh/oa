@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import org.apache.ibatis.session.SqlSession;
 import org.junit.Test;
@@ -23,10 +24,13 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 
 
+
+
 import com.acm.dao.DepartmentMapper;
 import com.acm.dao.UserMapper;
 import com.acm.entity.Department;
 import com.acm.entity.User;
+import com.acm.utils.Md5Util;
 
 
 
@@ -82,11 +86,26 @@ public class DaoTest {
 	    System.out.println(departments);*/
 	    
 	    //suserMapper.deleteByPrimaryKey(12);
-	    
-	    
-	  
-		
 		
 	}
+	
+	/**
+	 * 批量插入数据
+	 */
+	@Test
+	public void batch(){
+		DepartmentMapper deptMapper = (DepartmentMapper) sqlSession.getMapper(DepartmentMapper.class);
+		for(int i=0;i<1000;i++){
+			String uid = UUID.randomUUID().toString().substring(0,4)+i+"ACM编程";
+			
+			Department department = new Department(uid, "123456",null, 1, 2);
+			department = Md5Util.md5Dept(department);
+			deptMapper.insertSelective(department);
+			
+		}
+		
+	}
+	
+	
 
 }

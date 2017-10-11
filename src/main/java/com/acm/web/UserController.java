@@ -171,7 +171,7 @@ public class UserController {
 		// TODO Auto-generated method stub
 		Department department = new Department();
 		department.setName(deptName);
-		PageHelper.startPage(joinDeptPageNum, 2);
+		PageHelper.startPage(joinDeptPageNum, 10);
 		// 分页查询
 		joinDepts = departmentServiceImpl.findByUserIdAndDepartment(
 				user.getId(), department);
@@ -187,7 +187,7 @@ public class UserController {
 	 */
 	private PageInfo<Department> getAllDept(Integer allDeptPageNum,String deptName) {
 		// TODO Auto-generated method stub
-		PageHelper.startPage(allDeptPageNum, 2);
+		PageHelper.startPage(allDeptPageNum, 10);
 		Department department = new Department();
 		department.setName(deptName);
 		allDepts = departmentServiceImpl.findByDepartment(department);
