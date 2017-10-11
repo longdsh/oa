@@ -86,7 +86,7 @@ function f5_all_dept(result) {
 
 		tr.append(td_dept_name).append(td_add_dept).appendTo("#show_all_dept");
 
-	})
+	});
 
 }
 

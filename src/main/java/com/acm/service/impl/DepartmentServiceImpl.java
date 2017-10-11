@@ -85,7 +85,7 @@ public class DepartmentServiceImpl implements DepartmentService {
 	}
 
 	@Override
-	public void delectDepartmentById(Integer id) {
+	public void deleteDepartmentById(Integer id) {
 		// TODO Auto-generated method stub
 		departmentMapper.deleteByPrimaryKey(id);
 

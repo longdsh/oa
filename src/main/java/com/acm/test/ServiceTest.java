@@ -84,8 +84,10 @@ public class ServiceTest {
 		/*
 		 * findAllDepartment 
 		 */
-		departments = departmentServiceImpl.findAllDepartment();
-		System.out.println(departments);
+		/*departments = departmentServiceImpl.findAllDepartment();
+		System.out.println(departments);*/
+		
+		System.out.println(departmentServiceImpl.countDeptByName("lusufei"));
 		
 		
 		

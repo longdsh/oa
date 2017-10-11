@@ -21,7 +21,7 @@ public interface DepartmentService {
 	
 	public void addDepartment(Department department);
 	
-	public void delectDepartmentById(Integer id);
+	public void deleteDepartmentById(Integer id);
 	
 	public void updateDeparmentByDept(Department department);
 

@@ -121,6 +121,7 @@ public class LoginController {
 				return "../../login";
 			}
 			Department department = departmentServiceImpl.findDepartmentByName(username);
+			System.out.println("deptOrUser:"+department);
 			// 如果部门登录 以部门名为盐值
 			session.setAttribute("userOrDept", department);
 			session.setAttribute("role", "dept");

@@ -9,6 +9,7 @@ package com.acm.utils;
 import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.util.ByteSource;
 
+import com.acm.entity.Department;
 import com.acm.entity.User;
 
 public class Md5Util {
@@ -18,13 +19,24 @@ public class Md5Util {
 		String hashAlgorithmName = "MD5";
 		Object credentials = user.getPassword();
 		//盐值为学号
-		Object salt = ByteSource.Util.bytes(user.getUserId());;
+		Object salt = ByteSource.Util.bytes(user.getUserId());
 		Object result = new SimpleHash(hashAlgorithmName, credentials, salt, 1024);
 		
 		user.setPassword(result.toString());
 
 		user.setPower(1);
 		return user;
+		
+	}
+	
+	public static Department md5Dept(Department department){
+		System.out.println("md5Util:"+department);
+		String hashAlgorithmName = "MD5";
+		Object credentials = department.getPassword();
+		Object salt = ByteSource.Util.bytes(department.getName());
+		Object result = new SimpleHash(hashAlgorithmName, credentials, salt, 1024);
+		department.setPassword(result.toString());
+		return department;
 		
 	}
 

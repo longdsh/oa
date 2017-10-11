@@ -18,9 +18,9 @@ public class Md5Test {
 	public void test() {
 		String hashAlgorithmName = "MD5";
 		//密码
-		Object credentials = "lusufei";
+		Object credentials = "root";
 		//盐值
-		Object salt = ByteSource.Util.bytes("lusufei");;
+		Object salt = ByteSource.Util.bytes("root");;
 		Object result = new SimpleHash(hashAlgorithmName, credentials, salt, 1024);
 		System.out.println(result);
 	}
