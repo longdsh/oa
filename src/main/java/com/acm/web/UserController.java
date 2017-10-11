@@ -66,7 +66,11 @@ public class UserController {
 	 */
 	@RequestMapping(value = "/userFrist")
 	public String userFrist(Model model) {
-		user = (User) SessionUtil.getSession().getAttribute("userOrDept");
+		if(SessionUtil.getSession().getAttribute("user")==null){
+		   user = (User) SessionUtil.getSession().getAttribute("userOrDept");
+		}else{
+		   user = (User) SessionUtil.getSession().getAttribute("user");
+		}
 		model.addAttribute("user", user);
 		return "user";
 	}
@@ -85,8 +89,8 @@ public class UserController {
      //  System.out.println("allDeptPageNum:"+allDeptPageNum);
       // System.out.println("deptName:"+deptName);
 		allPageDept = getAllDept(allDeptPageNum,deptName);
-
-		return Message.success().add("user", this.user)
+		System.out.println("f5All:"+user);
+		return Message.success().add("user",this.user)
 				.add("allPageDept", allPageDept);
 		// .add("joinPageDept", joinPageDept);
 
@@ -149,8 +153,9 @@ public class UserController {
 			// TODO: handle exception
 			return Message.fail().setMsg("未知错误");
 		}
-		
 		this.user = user;
+		SessionUtil.getSession().setAttribute("user", user);
+		System.out.println("upUserInfo:"+this.user);
 		return Message.success().add("user", user);
 	}
 	

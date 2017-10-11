@@ -214,8 +214,8 @@ $("#updata_user_info_modal_submit").click(function() {
 		return false;
 	}
 	//此处不明白为何 $("#user_info").serialize() 不行
-	var info = $("#updata_user_info_modal form").serialize();
-	alert(info);
+	//var info = $("#updata_user_info_modal form").serialize();
+	//alert(info);
 	$("#updata_user_info_modal").modal('hide');
 	$.ajax({
 		type : "post",
