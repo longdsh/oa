@@ -102,6 +102,7 @@ public class AdminController {
 			return Message.fail();
 		}
 		department.setPower(2);
+		department.setIsRecruit(1);
 		department = Md5Util.md5Dept(department);
 		departmentServiceImpl.addDepartment(department);
 		return Message.success();
