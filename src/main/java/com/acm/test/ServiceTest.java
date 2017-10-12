@@ -16,6 +16,7 @@ import com.acm.entity.User;
 import com.acm.service.impl.DepartmentServiceImpl;
 import com.acm.service.impl.UserDeptServiceImpl;
 import com.acm.service.impl.UserServiceImpl;
+import com.xuxueli.poi.excel.ExcelExportUtil;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -136,6 +137,12 @@ public class ServiceTest {
 		 */
 		user = userServiceImpl.findUserByUserId("413150313");
 		System.out.println(user);
+	}
+	
+	@Test
+	public void ExcelTest() {
+		departments = departmentServiceImpl.findAllDepartment();
+		ExcelExportUtil.exportToFile(departments, "D://dept.xls");
 	}
 	
 

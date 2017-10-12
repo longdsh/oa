@@ -208,6 +208,14 @@
 			<version>1.6.1</version>
 		</dependency>
 
+		<!-- excel导出工具 -->
+		<!-- http://repo1.maven.org/maven2/com/xuxueli/xxl-excel-core/ -->
+		<dependency>
+			<groupId>com.xuxueli</groupId>
+			<artifactId>xxl-excel</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+
 
 
 	</dependencies>

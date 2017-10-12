@@ -1,8 +1,13 @@
 package com.acm.entity;
 
-public class Department {
-    private Integer id;
+import com.xuxueli.poi.excel.annotation.ExcelField;
+import com.xuxueli.poi.excel.annotation.ExcelSheet;
 
+//@ExcelSheet(name = "商户列表")
+public class Department {
+	@ExcelField(name = "ID")
+    private Integer id;
+	@ExcelField(name = "部门名")
     private String name;
 
     private String password;

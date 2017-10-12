@@ -1,14 +1,17 @@
 package com.acm.entity;
 
+import com.xuxueli.poi.excel.annotation.ExcelField;
+
 public class User {
     private Integer id;//主键
-
+    
+    @ExcelField(name = "学号")
     private String userId;//学号
-
+    @ExcelField(name = "班级")
     private String userClass;//班级
-
+    @ExcelField(name = "姓名")
     private String name;
-
+    @ExcelField(name = "手机")
     private String phone;
 
     private String img;//头像
