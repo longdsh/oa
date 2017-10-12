@@ -6,7 +6,7 @@
 	//验证学号长度
 	$(".idsignup").change(function(){
     	//alert($(this).val().length)
-    	if($(this).val().length<=9){
+    	if($(this).val().length<=9&&$(this).val()!="manage"){
     		alert("学号长度需大于等于10")
     	}
     })
