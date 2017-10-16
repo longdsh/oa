@@ -6,6 +6,8 @@
 
 项目管理工具 Maven
 
+服务器 Tomcat7.0
+
 框架 SpringMVC,Spring,Mybatis
      
 权限控制Shiro     
