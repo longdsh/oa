@@ -89,7 +89,7 @@ public class UserController {
      //  System.out.println("allDeptPageNum:"+allDeptPageNum);
       // System.out.println("deptName:"+deptName);
 		allPageDept = getAllDept(allDeptPageNum,deptName);
-		System.out.println("f5All:"+user);
+		//System.out.println("f5All:"+user);
 		return Message.success().add("user",this.user)
 				.add("allPageDept", allPageDept);
 		// .add("joinPageDept", joinPageDept);

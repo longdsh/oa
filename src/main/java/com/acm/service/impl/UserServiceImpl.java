@@ -57,8 +57,14 @@ public class UserServiceImpl implements UserService {
 		return userMapper.selectByUser(user);
 	}
 
+	/**
+	 * user 可为空
+	 */
 	@Override
 	public List<User> findUserByDeptIdAndUser(Integer deptId,User user) {
+		if(user==null){
+			user = new User();
+		}
 		Department department = new Department();
 		department.setId(deptId);
 		Map<String, Object> map = new HashMap<String, Object>();

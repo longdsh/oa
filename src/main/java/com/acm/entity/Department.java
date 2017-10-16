@@ -13,7 +13,7 @@ public class Department {
     private String password;
 
     private String img;
-
+    
     private Integer isRecruit;//是否允许加入
 
     private Integer power;

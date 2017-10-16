@@ -141,8 +141,12 @@ public class ServiceTest {
 	
 	@Test
 	public void ExcelTest() {
-		departments = departmentServiceImpl.findAllDepartment();
-		ExcelExportUtil.exportToFile(departments, "D://dept.xls");
+		/*departments = departmentServiceImpl.findAllDepartment();
+		ExcelExportUtil.exportToFile(departments, "D://dept.xls");*/
+		String filePath = "D://"+"file/"+1+".xls";
+		System.out.println(filePath);
+		List<User> users = userServiceImpl.findUserByDeptIdAndUser(16, null);
+		ExcelExportUtil.exportToFile(users,filePath);
 	}
 	
 
