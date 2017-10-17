@@ -105,12 +105,12 @@ $("#to_excel").click(function(){
 			if(result.code==100){	
 				alert("待完善");
 				//$("#down").attr("herf",result.extend.filePath);
-				//window.location.href="file://"+result.extend.filePath;
-				//window.open(result.extend.filePath);
+				window.location.href="file://"+result.extend.filePath;
+				window.open("file://"+result.extend.filePath);
 				//alert("在浏览器中输入地址"+result.extend.filePath);
 			}
 			else{
-				alert("下载失败");
+				//alert("下载失败");
 			}
 		}
 	});

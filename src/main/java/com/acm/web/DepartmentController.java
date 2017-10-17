@@ -1,11 +1,15 @@
 package com.acm.web;
 
+import java.io.BufferedInputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.util.List;
 
 import javax.management.relation.Relation;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.authz.annotation.RequiresRoles;
@@ -92,14 +96,16 @@ public class DepartmentController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "toExcel")
-	public Message toExcel(HttpServletRequest request) {
-		String realPath = request.getSession().getServletContext().getRealPath("/userFile");
+	public Message toExcel(HttpServletRequest request,HttpServletResponse response) {
+		String realPath = request.getSession().getServletContext().getRealPath("/WEB-INF/userFile/");
 		
 		File file = new File(realPath);
 		if (!file.exists()) {
 			file.mkdir();
 		}
+		//file = new File(realPath,this.dept.getName() + ".xls");
 		String filePath = realPath + "\\"+this.dept.getName() + ".xls";
+		
 		System.out.println(file.getPath());
 		System.out.println(filePath);
 		List<User> users = userServiceImpl.findUserByDeptIdAndUser(
