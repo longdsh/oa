@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
+import javax.management.relation.Relation;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -92,11 +93,13 @@ public class DepartmentController {
 	@ResponseBody
 	@RequestMapping(value = "toExcel")
 	public Message toExcel(HttpServletRequest request) {
-		String filePath = "D:/"+"/file/" + this.dept.getName() + ".xls";
-		File file = new File("D:/"+"/file/");
+		String realPath = request.getSession().getServletContext().getRealPath("/userFile");
+		
+		File file = new File(realPath);
 		if (!file.exists()) {
 			file.mkdir();
 		}
+		String filePath = realPath + "\\"+this.dept.getName() + ".xls";
 		System.out.println(file.getPath());
 		System.out.println(filePath);
 		List<User> users = userServiceImpl.findUserByDeptIdAndUser(
@@ -118,7 +121,9 @@ public class DepartmentController {
 
 	@ResponseBody
 	@RequestMapping(value = "f5User")
-	public Message f5User(Integer allUserPageNum, User user) {
+	public Message f5User(Integer allUserPageNum, String userId,String userClass,String name,String phone) {
+		//System.out.println("f5User:"+user);
+		User user = new User(userId, userClass, name, phone, null, null, null);
 		allPageUser = getAllUser(allUserPageNum, user);
 
 		return Message.success().add("dept", dept)

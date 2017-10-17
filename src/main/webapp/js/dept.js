@@ -4,13 +4,23 @@ $(function() {
 });
 
 function f5_all_info(allUserPageNum) {
+	//var user = $("#find_all_user form").serialize();
+	//alert($("#find_all_user form").serialize());
+	
 	$.ajax({
 		type : "post",
 		url : getRootPath() + "/dept/f5User",
 		data : {
 			"allUserPageNum" : allUserPageNum,
-			"user" : $("#find_all_user").serialize()
+			//知识面短缺
+			"userId":$("#userId").val(),
+			"userClass":$("#userClass").val(),
+			"name":$("#userName").val(),
+			"phone":$("#userPhone").val(),
 		},
+		
+		
+	
 		success : function(result) {
 			f5_dept_info(result);
 			f5_all_user(result);
@@ -93,10 +103,11 @@ $("#to_excel").click(function(){
 		//data :
 		success:function(result){
 			if(result.code==100){	
-				
+				alert("待完善");
+				//$("#down").attr("herf",result.extend.filePath);
 				//window.location.href="file://"+result.extend.filePath;
 				//window.open(result.extend.filePath);
-				alert("在浏览器中输入地址"+result.extend.filePath);
+				//alert("在浏览器中输入地址"+result.extend.filePath);
 			}
 			else{
 				alert("下载失败");
@@ -154,6 +165,10 @@ $("#updata_user_info_modal_submit").click(function(){
 		}
 	});
 })
+
+$("#find_all_user input").keyup(function(){
+	f5_all_info(all_user_pageNum);
+});
 
 // 得到绝对路径
 function getRootPath() {

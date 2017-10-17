@@ -87,29 +87,32 @@
 	<div class="row">
 		<div class="col-md-12">
 			<h3>部门内所有人</h3>
-			<div class="row">
-				<form id="find_all_user">
+			<!-- 知识面短缺待完善 -->
+			 <div class="row" id="find_all_user">
+				<form>
 					<!-- 模糊查询 -->
-					<div class="col-md-3">
-						<input type="text" class="form-control" name="userId"
+					 <div class="col-md-3">
+						<input type="text" class="form-control" name="userId" id="userId"
 							placeholder="学号">
 					</div>
-					<div class="col-md-3">
-						<input type="text" class="form-control" name="userClass"
+					 <div class="col-md-3">
+						<input type="text" class="form-control" name="userClass" id="userClass"
 							placeholder="班级">
 					</div>
 					<div class="col-md-3">
-						<input type="text" class="form-control" name="userName"
+						<input type="text" class="form-control" name="name" id="userName"
 							placeholder="姓名">
 					</div>
 					<div class="col-md-3">
-						<input type="text" class="form-control" name="userPhone"
+						<input type="text" class="form-control" name="phone" id="userPhone"
 							placeholder="手机号">
-					</div>	
+					</div>	 
 				</form>
+				
 				<button id="to_excel" class="btn btn-primary">
 							<span class="glyphicon glyphicon-pencil" aria-hidden="true">导出数据</span>
 			    </button>
+			   <!--  <a id="down" herf="#" download="1.xls">下载</a> -->
 				<!-- 页面具体信息 页数  数据条数-->
 				<div class="col-md-4" id="all_user_page_info">
 					<!-- ajax填充 -->
