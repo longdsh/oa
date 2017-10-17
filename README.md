@@ -18,9 +18,9 @@
 
 Jquery 实现Ajax 动态生成前端数据   
  
-账号 manage root root
-     manage  acm  123456
-     041315036   1  123456
+账号 manage root root     
+     manage  acm  123456     
+     041315036   1  123456      
      
 
  
